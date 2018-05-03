@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fnombres" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="24005f01-5d32-4fa6-a88d-22c3ecd5e363">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select  f.cod_cliente,
+f.cod_factura,
+f.cod_empleado,
+f.fecha,
+rf.Total,
+c.nombres,
+e.nombres as nombre
+
+from factura f
+inner join referencia_factura rf on f.cod_factura=rf.cod_factura
+inner join cliente c on f.cod_cliente=c.cod_cliente
+inner join empleado e on f.cod_empleado=e.cod_empleado
+
+where c.nombres  = "manuel" group by f.cod_factura]]>
+	</queryString>
+	<field name="cod_cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_factura" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_empleado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String"/>
+	<group name="cod_factura">
+		<groupExpression><![CDATA[$F{cod_factura}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="6fa6a471-b6a6-4bf6-817a-0ee324719f6f" x="10" y="10" width="291" height="33"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEM ELECTRONIK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5653728-9a27-440f-91b1-92e239defc79" x="36" y="45" width="250" height="14"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[TEL 3146586462]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5653728-9a27-440f-91b1-92e239defc79" x="45" y="32" width="250" height="21"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[CLL PRINCIPAL 2 DE NOVIEMBRE]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement uuid="69a9877d-b4ee-42df-9b2a-426dba0d68f7" x="319" y="4" width="207" height="55" backcolor="#FF6666"/>
+			</rectangle>
+			<line>
+				<reportElement uuid="ce9666c3-4e87-47ff-a79c-e4e02f842cba" x="321" y="33" width="205" height="1"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="a308e3a7-468f-40ac-9f07-144466c4e499" x="0" y="1" width="526" height="26" backcolor="#FF6666"/>
+			</rectangle>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement uuid="a96d4d7d-570f-4609-ad50-15e6f4cc766e" x="0" y="21" width="555" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="a97f1e7e-3d73-4b25-a647-4ef1d4c183a3" x="260" y="5" width="221" height="20" backcolor="#FF3333"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="e27d8da4-d2ab-45f4-b89d-448a38b6850f" x="268" y="4" width="224" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[diseñado por manuel romero]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

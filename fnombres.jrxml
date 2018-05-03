@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fnombres" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="24005f01-5d32-4fa6-a88d-22c3ecd5e363">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombre" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select  f.cod_cliente,
+f.cod_factura,
+f.cod_empleado,
+f.fecha,
+rf.Total,
+c.nombres,
+e.nombres as nombre
+
+from factura f
+inner join referencia_factura rf on f.cod_factura=rf.cod_factura
+inner join cliente c on f.cod_cliente=c.cod_cliente
+inner join empleado e on f.cod_empleado=e.cod_empleado
+
+where c.cod_cliente = $P{nombre} group by f.cod_factura]]>
+	</queryString>
+	<field name="cod_cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_factura" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_empleado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String"/>
+	<group name="cod_factura">
+		<groupExpression><![CDATA[$F{cod_factura}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="69a9877d-b4ee-42df-9b2a-426dba0d68f7" x="321" y="0" width="217" height="49" backcolor="#00CCFF"/>
+			</rectangle>
+			<line>
+				<reportElement uuid="ce9666c3-4e87-47ff-a79c-e4e02f842cba" x="321" y="27" width="205" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="ff1d8719-d4bb-45ab-aaf3-aed2c502d325" x="321" y="30" width="205" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b24f13c7-8ef7-499c-9e1d-42b17b5445ee" x="380" y="6" width="122" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6fa6a471-b6a6-4bf6-817a-0ee324719f6f" x="10" y="10" width="291" height="33"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FERRO-PINTOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5653728-9a27-440f-91b1-92e239defc79" x="36" y="45" width="250" height="14"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[NIT- 314-658-6462]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e5653728-9a27-440f-91b1-92e239defc79" x="45" y="33" width="250" height="21"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[CLL PRINCIPAL 2 DE MAGANGUE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="a308e3a7-468f-40ac-9f07-144466c4e499" x="0" y="1" width="538" height="26" backcolor="#00CCFF"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="09dc050a-f62e-4a24-ae7d-a1796a2e61e8" x="12" y="6" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NUMERO FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b2c928e2-aa4e-436f-b5c8-a5c594ee22a9" x="125" y="6" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b2c928e2-aa4e-436f-b5c8-a5c594ee22a9" x="248" y="6" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALOR FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b24f13c7-8ef7-499c-9e1d-42b17b5445ee" x="370" y="7" width="122" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE EMPLEADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<line>
+				<reportElement uuid="a96d4d7d-570f-4609-ad50-15e6f4cc766e" x="0" y="18" width="538" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="01f4b90e-ae4b-42e5-9bc7-0af855f01588" x="11" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cod_factura}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="29dc8be9-4a17-445d-ab53-a646b5179428" x="125" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e38cc521-5228-4a9e-af8d-24ca9658c7ea" x="244" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{Total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="588638d3-2088-4d42-9f40-1f2f0072d20d" x="373" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="26" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
