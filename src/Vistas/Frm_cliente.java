@@ -42,6 +42,9 @@ public class Frm_cliente extends javax.swing.JDialog {
     }
     
     public void deshabilitar(){
+        
+       jPanel1.setVisible(false);
+        
        txtnombre.setText("");
        txtapellido.setText("");
        txtcodigo.setText("");
@@ -62,6 +65,9 @@ public class Frm_cliente extends javax.swing.JDialog {
     }
     
     public void nuevoc(){
+        
+      jPanel1.setVisible(true);  
+        
      txtnombre.setText("");
      txtapellido.setText("");
      txtcodigo.setText("");
@@ -145,10 +151,10 @@ public class Frm_cliente extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtdireccion = new javax.swing.JTextField();
+        btn_guardara = new org.edisoncor.gui.button.ButtonSeven();
         panelImage3 = new org.edisoncor.gui.panel.PanelImage();
         panelImage4 = new org.edisoncor.gui.panel.PanelImage();
         btn_nuevoa = new org.edisoncor.gui.button.ButtonSeven();
-        btn_guardara = new org.edisoncor.gui.button.ButtonSeven();
         btn_eliminara = new org.edisoncor.gui.button.ButtonSeven();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -243,6 +249,17 @@ public class Frm_cliente extends javax.swing.JDialog {
         });
         jPanel1.add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 220, 40));
 
+        btn_guardara.setBackground(new java.awt.Color(204, 204, 204));
+        btn_guardara.setText("Guardar");
+        btn_guardara.setColorBrillo(new java.awt.Color(255, 255, 255));
+        btn_guardara.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btn_guardara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardaraActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btn_guardara, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, 140, 70));
+
         panelImage1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 500, 450));
 
         panelImage3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/linea.png"))); // NOI18N
@@ -285,17 +302,6 @@ public class Frm_cliente extends javax.swing.JDialog {
             }
         });
         panelImage1.add(btn_nuevoa, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 640, 140, 70));
-
-        btn_guardara.setBackground(new java.awt.Color(204, 204, 204));
-        btn_guardara.setText("Guardar");
-        btn_guardara.setColorBrillo(new java.awt.Color(255, 255, 255));
-        btn_guardara.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        btn_guardara.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_guardaraActionPerformed(evt);
-            }
-        });
-        panelImage1.add(btn_guardara, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 640, 140, 70));
 
         btn_eliminara.setBackground(new java.awt.Color(204, 204, 204));
         btn_eliminara.setText("Eliminar");

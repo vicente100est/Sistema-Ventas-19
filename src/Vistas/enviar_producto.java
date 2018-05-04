@@ -88,7 +88,8 @@ String codigo,referencia,cantidad,marca,valor;
 
                         }
 
-        
+                        Render r= new Render(2);
+                         tabla.setDefaultRenderer(Object.class,r);
         
         
 
@@ -114,7 +115,7 @@ String codigo,referencia,cantidad,marca,valor;
         jPanel1 = new javax.swing.JPanel();
         sp1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
-        enviar = new javax.swing.JButton();
+        enviarProducto = new javax.swing.JButton();
         txt_recibe = new javax.swing.JTextField();
         txtBuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -150,11 +151,11 @@ String codigo,referencia,cantidad,marca,valor;
         });
         sp1.setViewportView(tabla);
 
-        enviar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        enviar.setText("ENVIAR");
-        enviar.addActionListener(new java.awt.event.ActionListener() {
+        enviarProducto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        enviarProducto.setText("ENVIAR");
+        enviarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviarActionPerformed(evt);
+                enviarProductoActionPerformed(evt);
             }
         });
 
@@ -226,7 +227,7 @@ String codigo,referencia,cantidad,marca,valor;
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txt_recibe, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
-                        .addComponent(enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(enviarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31))
         );
         jPanel1Layout.setVerticalGroup(
@@ -253,7 +254,7 @@ String codigo,referencia,cantidad,marca,valor;
                 .addComponent(sp1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enviarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_recibe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(213, 213, 213))
         );
@@ -315,8 +316,9 @@ private void filtro2(String consulta, JTable jtableBuscar){
         }
     }//GEN-LAST:event_txtBuscarKeyReleased
 
-    private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
+    private void enviarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarProductoActionPerformed
         if(txt_recibe.getText().equals("1")){
+            Frm_facturap.cb3.setSelectedItem(referencia);
             Frm_facturap.cb3.setSelectedItem(referencia);
             this.setVisible(false);
         }
@@ -328,15 +330,39 @@ private void filtro2(String consulta, JTable jtableBuscar){
             Frm_Articulo.txtMarca.setText(valor);
             this.setVisible(false);
         }
-    }//GEN-LAST:event_enviarActionPerformed
+    }//GEN-LAST:event_enviarProductoActionPerformed
 
     private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
-        Select=tabla.getSelectedRow();
-        codigo= tabla.getValueAt(Select,0).toString();
-        referencia= tabla.getValueAt(Select,1).toString();
-        cantidad= tabla.getValueAt(Select,2).toString();
-        marca= tabla.getValueAt(Select,3).toString();
-        valor= tabla.getValueAt(Select,4).toString();
+        int fila= tabla.getSelectedRow();
+         
+        //this.setVisible(false);
+        if(fila>=0){
+            Select=tabla.getSelectedRow();
+            codigo= tabla.getValueAt(Select,0).toString();
+            referencia= tabla.getValueAt(Select,1).toString();
+            cantidad= tabla.getValueAt(Select,2).toString();
+            marca= tabla.getValueAt(Select,3).toString();
+            valor= tabla.getValueAt(Select,4).toString();
+            //Frm_facturap.cb3.setSelectedItem(referencia);
+           
+        }else{
+            JOptionPane.showMessageDialog(null,"No selecciono ninguna fila");
+        }
+        if(txt_recibe.getText().equals("1")){
+            Frm_facturap.cb3.setSelectedItem(referencia);
+            this.setVisible(false);
+        }else{
+            if(txt_recibe.getText().equals("10")){
+                frm_remito.cbArticulo.setSelectedItem(referencia);
+                this.setVisible(false);
+            }else{
+                if(txt_recibe.getText().equals("11")){
+                    Frm_presupuesto.cb3.setSelectedItem(referencia);
+                    this.setVisible(false);
+                }
+            
+            }
+        }
     }//GEN-LAST:event_tablaMouseClicked
 
     
@@ -388,7 +414,7 @@ private void filtro2(String consulta, JTable jtableBuscar){
     private javax.swing.JRadioButton checkCodigo;
     private javax.swing.JRadioButton checkMarca;
     private javax.swing.JRadioButton checkReferencia;
-    private javax.swing.JButton enviar;
+    public static javax.swing.JButton enviarProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private org.edisoncor.gui.panel.PanelImage panelImage1;

@@ -177,6 +177,9 @@ private void filtro2(String consulta, JTable jtableBuscar){
     }
     
     public void deshabilitar(){
+        
+        jPanel1.setVisible(false);
+        
         txtCodigo.setText("");
         txtCantidad.setText("");
         txtProducto.setText("");
@@ -197,6 +200,8 @@ private void filtro2(String consulta, JTable jtableBuscar){
         btn_cancelara.setVisible(false);
     }
     public void nuevo(){
+        
+        jPanel1.setVisible(true);
         
         txtCodigo.setText("");
         txtCodigo.requestFocus();

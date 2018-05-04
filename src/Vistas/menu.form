@@ -721,22 +721,27 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="botonArticulos1" min="-2" pref="251" max="-2" attributes="0"/>
-                  <Component id="botonArticulos2" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                  <Component id="botonArticulos3" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                  <Component id="botonArticulos6" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                  <Component id="botonArticulos5" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                  <Component id="botonArticulos4" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                  <Component id="botonArticulos7" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                  <Component id="botonArticulos8" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                  <Component id="botonArticulos9" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                  <Component id="botonArticulos10" alignment="1" min="-2" pref="251" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="botonArticulos1" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos2" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos3" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos6" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos5" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos4" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos7" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos8" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos9" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos10" alignment="1" min="-2" pref="251" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="botonArticulos1" min="-2" pref="81" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="botonArticulos2" min="-2" pref="81" max="-2" attributes="0"/>
@@ -756,7 +761,7 @@
                       <Component id="botonArticulos9" min="-2" pref="81" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="botonArticulos10" min="-2" pref="81" max="-2" attributes="0"/>
-                      <EmptySpace pref="180" max="32767" attributes="0"/>
+                      <EmptySpace pref="171" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -765,13 +770,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Articulos"/>
                 <Property name="focusCycleRoot" type="boolean" value="true"/>
@@ -784,13 +786,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos2">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Proveedores"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -799,13 +798,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos3">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clientes"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -817,13 +813,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos4">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Remitos"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -832,13 +825,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos5">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Facturas"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -847,13 +837,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos6">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Empleados"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -862,13 +849,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos7">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Presupuestos"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -880,13 +864,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos8">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Facturas"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -895,13 +876,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos9">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Clientes"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -910,13 +888,10 @@
             <Component class="javax.swing.JButton" name="botonArticulos10">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="66" red="0" type="rgb"/>
+                  <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Articulos"/>
                 <Property name="focusable" type="boolean" value="false"/>

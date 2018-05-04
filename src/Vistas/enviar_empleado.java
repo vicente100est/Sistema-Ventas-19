@@ -81,8 +81,8 @@ String telefono,cedula,nombres,apellidos,direccion;
         panelImage1 = new org.edisoncor.gui.panel.PanelImage();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla1 = new javax.swing.JTable();
-        enviar = new javax.swing.JButton();
-        txt_recibe = new javax.swing.JTextField();
+        enviarEmpleado = new javax.swing.JButton();
+        txt_recibeEmpleado = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         panelImage3 = new org.edisoncor.gui.panel.PanelImage();
         checkMarca = new javax.swing.JRadioButton();
@@ -118,11 +118,11 @@ String telefono,cedula,nombres,apellidos,direccion;
         });
         jScrollPane1.setViewportView(tabla1);
 
-        enviar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        enviar.setText("ENVIAR");
-        enviar.addActionListener(new java.awt.event.ActionListener() {
+        enviarEmpleado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        enviarEmpleado.setText("ENVIAR");
+        enviarEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviarActionPerformed(evt);
+                enviarEmpleadoActionPerformed(evt);
             }
         });
 
@@ -198,9 +198,9 @@ String telefono,cedula,nombres,apellidos,direccion;
                 .addContainerGap(29, Short.MAX_VALUE)
                 .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
-                        .addComponent(txt_recibe, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_recibeEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enviar)
+                        .addComponent(enviarEmpleado)
                         .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,8 +227,8 @@ String telefono,cedula,nombres,apellidos,direccion;
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 27, Short.MAX_VALUE)
                 .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_recibe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(enviar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_recibeEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(enviarEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9))
         );
 
@@ -267,21 +267,45 @@ String telefono,cedula,nombres,apellidos,direccion;
         // TODO add your handling code here:
     }//GEN-LAST:event_checkCodigoActionPerformed
 
-    private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
-        if(txt_recibe.getText().equals("1")){
-            Frm_facturap.cb1.setSelectedItem(nombres);
+    private void enviarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarEmpleadoActionPerformed
+        if(txt_recibeEmpleado.getText().equals("1")){
+            Frm_facturap.cb1.setSelectedItem(nombres+" "+apellidos);
+            Frm_facturap.cb1.setSelectedItem(nombres+" "+apellidos);
             this.setVisible(false);
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_enviarActionPerformed
+    }//GEN-LAST:event_enviarEmpleadoActionPerformed
 
     private void tabla1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla1MouseClicked
-        Select=tabla1.getSelectedRow();
-        cedula= tabla1.getValueAt(Select,0).toString();
-        nombres= tabla1.getValueAt(Select,1).toString();
-        apellidos= tabla1.getValueAt(Select,2).toString();
-        direccion= tabla1.getValueAt(Select,3).toString();
-        telefono= tabla1.getValueAt(Select,4).toString();
+        int fila= tabla1.getSelectedRow();
+        if(fila>=0){
+            Select=tabla1.getSelectedRow();
+            cedula= tabla1.getValueAt(Select,0).toString();
+            nombres= tabla1.getValueAt(Select,1).toString();
+            apellidos= tabla1.getValueAt(Select,2).toString();
+            direccion= tabla1.getValueAt(Select,3).toString();
+            telefono= tabla1.getValueAt(Select,4).toString();
+            //Frm_facturap.cb1.setSelectedItem(nombres+" "+apellidos);
+            //Frm_facturap.cb1.setSelectedItem(nombres+" "+apellidos);
+            //this.setVisible(false);
+        }else{
+            JOptionPane.showMessageDialog(null,"No selecciono ninguna fila");
+        }
+        if(txt_recibeEmpleado.getText().equals("1")){
+            Frm_facturap.cb1.setSelectedItem(nombres+" "+apellidos);
+            this.setVisible(false);
+        }else{
+           if(txt_recibeEmpleado.getText().equals("9")){
+                frm_remito.cbEmpleado.setSelectedItem(nombres+" "+apellidos);
+                this.setVisible(false);
+            }else{
+                if(txt_recibeEmpleado.getText().equals("14")){
+                    Frm_presupuesto.cb1.setSelectedItem(nombres+" "+apellidos);
+                    this.setVisible(false);
+                }
+            }
+           
+        }
     }//GEN-LAST:event_tabla1MouseClicked
 
     DefaultTableModel dm;
@@ -354,13 +378,13 @@ private void filtro2(String consulta, JTable jtableBuscar){
     private javax.swing.JRadioButton checkCodigo;
     private javax.swing.JRadioButton checkMarca;
     private javax.swing.JRadioButton checkReferencia;
-    private javax.swing.JButton enviar;
+    public static javax.swing.JButton enviarEmpleado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private org.edisoncor.gui.panel.PanelImage panelImage1;
     private org.edisoncor.gui.panel.PanelImage panelImage3;
     private javax.swing.JTable tabla1;
     private javax.swing.JTextField txtBuscar;
-    public static javax.swing.JTextField txt_recibe;
+    public static javax.swing.JTextField txt_recibeEmpleado;
     // End of variables declaration//GEN-END:variables
 }

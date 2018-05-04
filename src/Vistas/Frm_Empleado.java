@@ -65,7 +65,9 @@ public class Frm_Empleado extends javax.swing.JDialog {
     
     
     public void nuevoem(){
-    
+            
+            jPanel1.setVisible(true);
+        
             txtnombre.setText("");
             txtapellido.setText("");
             txtcodigo.setText("");
@@ -83,6 +85,9 @@ public class Frm_Empleado extends javax.swing.JDialog {
             btn_eliminara.setVisible(true);
     }
     public void deshabilitar(){
+        
+            jPanel1.setVisible(false);
+        
             txtnombre.setText("");
             txtapellido.setText("");
             txtcodigo.setText("");

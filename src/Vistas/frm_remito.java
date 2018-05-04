@@ -146,7 +146,7 @@ fec.setText(año+"/"+mes+"/"+dia);
                 cbCliente.addItem("SELECCIONE CLIENTE");
                 i=0;
                 while(res.next()){
-                    cbCliente.addItem(res.getString(2));
+                    cbCliente.addItem(res.getString(2)+" "+res.getString(3));
                     i++;
                 }
 
@@ -157,7 +157,7 @@ fec.setText(año+"/"+mes+"/"+dia);
                 cbEmpleado.addItem("SELECCIONE EMPLEADO");
                 i=0;
                 while(res.next()){
-                    cbEmpleado.addItem(res.getString(2));
+                    cbEmpleado.addItem(res.getString(2)+" "+res.getString(3));
                     i++;
                 }
 
@@ -245,6 +245,7 @@ fec.setText(año+"/"+mes+"/"+dia);
         b41 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla1 = new javax.swing.JTable();
+        botonAgregarCliente = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -261,6 +262,11 @@ fec.setText(año+"/"+mes+"/"+dia);
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         panelImage1.setBackground(new java.awt.Color(255, 255, 255));
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoMenumar2.png"))); // NOI18N
@@ -412,6 +418,14 @@ fec.setText(año+"/"+mes+"/"+dia);
         ));
         jScrollPane1.setViewportView(tabla1);
 
+        botonAgregarCliente.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        botonAgregarCliente.setText("+");
+        botonAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -446,13 +460,16 @@ fec.setText(año+"/"+mes+"/"+dia);
                             .addComponent(jLabel5)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(cbCliente, 0, 218, Short.MAX_VALUE)
+                            .addComponent(cbEmpleado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buscare, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buscare1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(buscare1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -462,34 +479,33 @@ fec.setText(año+"/"+mes+"/"+dia);
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jLabel7))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(buscare2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addContainerGap()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(cbArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel9)))))
-                                .addGap(19, 19, 19))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(buscare1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cbCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE))
-                                .addGap(22, 22, 22)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cbEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6)
-                            .addComponent(cant1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b41, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel7))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(buscare2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(cbArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel9)))))
+                        .addGap(19, 19, 19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addComponent(buscare, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(buscare1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
+                        .addGap(22, 22, 22)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cbEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel6)
+                        .addComponent(cant1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(b41, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscare, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
@@ -521,10 +537,9 @@ fec.setText(año+"/"+mes+"/"+dia);
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel11)))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(sub, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -870,7 +885,7 @@ fec.setText(año+"/"+mes+"/"+dia);
         enviar_empleado form= new enviar_empleado ();
         form.setVisible(true);
         form.toFront();
-        enviar_empleado.txt_recibe.setText("1");
+        enviar_empleado.txt_recibeEmpleado.setText("9");
 
     }//GEN-LAST:event_buscareActionPerformed
 
@@ -910,7 +925,7 @@ fec.setText(año+"/"+mes+"/"+dia);
         enviar_cliente form= new enviar_cliente ();
         form.setVisible(true);
         form.toFront();
-        enviar_cliente.recibe.setText("1");
+        enviar_cliente.recibe.setText("4");
 
         //// TODO add your handling code here:
     }//GEN-LAST:event_buscare1ActionPerformed
@@ -960,7 +975,7 @@ fec.setText(año+"/"+mes+"/"+dia);
         enviar_producto form= new enviar_producto ();
         form.setVisible(true);
         form.toFront();
-        enviar_producto.txt_recibe.setText("1");
+        enviar_producto.txt_recibe.setText("10");
 
         //        new tabla_articulo().setVisible(true);
         //        tabla_articulo.txb.setText("1");    // TODO add your handling code here:
@@ -1001,9 +1016,7 @@ fec.setText(año+"/"+mes+"/"+dia);
         //p40.setBackground(new java.awt.Color(153,204,255));
     }//GEN-LAST:event_btnAgregarMouseExited
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {                                   
-        cerrar();
-    }
+    
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         cbEmpleado.setEnabled(false);
@@ -1184,6 +1197,17 @@ fec.setText(año+"/"+mes+"/"+dia);
             JOptionPane.showMessageDialog(null,"Error en la Base de Datos") ;
         }
     }//GEN-LAST:event_btn_nuevoActionPerformed
+
+    private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
+        agregarcliente form= new agregarcliente ();
+        form.setVisible(true);
+        agregarcliente.recibeCliente.setText("4");
+        form.toFront();
+    }//GEN-LAST:event_botonAgregarClienteActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+       cerrar();
+    }//GEN-LAST:event_formWindowClosing
     
     /**
      * @param args the command line arguments
@@ -1223,6 +1247,7 @@ fec.setText(año+"/"+mes+"/"+dia);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton b41;
     private org.edisoncor.gui.button.ButtonSeven b42;
+    private javax.swing.JButton botonAgregarCliente;
     private javax.swing.JButton btnAgregar;
     private org.edisoncor.gui.button.ButtonSeven btn_guardara;
     private org.edisoncor.gui.button.ButtonSeven btn_nuevo;

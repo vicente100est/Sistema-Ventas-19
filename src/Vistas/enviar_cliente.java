@@ -106,7 +106,15 @@ String telefono,cedula,nombres,apellidos,direccion;
             new String [] {
                 "DNI", "NOMBRE", "APELLIDO", "DIRECCION", "TELEFONO"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabla1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabla1MouseClicked(evt);
@@ -198,19 +206,42 @@ String telefono,cedula,nombres,apellidos,direccion;
     }// </editor-fold>//GEN-END:initComponents
 
     private void tabla1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla1MouseClicked
-        Select=tabla1.getSelectedRow();
-        cedula= tabla1.getValueAt(Select,0).toString();
-        nombres= tabla1.getValueAt(Select,1).toString();
-        apellidos= tabla1.getValueAt(Select,2).toString();
-        direccion= tabla1.getValueAt(Select,3).toString();
-        telefono= tabla1.getValueAt(Select,4).toString(); 
+        int fila= tabla1.getSelectedRow();
+        if(fila>=0){
+             Select=tabla1.getSelectedRow();
+             cedula= tabla1.getValueAt(Select,0).toString();
+             nombres= tabla1.getValueAt(Select,1).toString();
+             apellidos= tabla1.getValueAt(Select,2).toString();
+             direccion= tabla1.getValueAt(Select,3).toString();
+             telefono= tabla1.getValueAt(Select,4).toString();
+             
+             if(recibe.getText().equals("1")){ 
+                Frm_facturap.cb2.setSelectedItem(nombres+" "+apellidos);
+                this.setVisible(false); 
+             }else{
+                if(recibe.getText().equals("4")){
+
+                   frm_remito.cbCliente.setSelectedItem(nombres+" "+apellidos);
+                   this.setVisible(false); 
+                }else{
+                    if(recibe.getText().equals("15")){
+
+                       Frm_presupuesto.cb2.setSelectedItem(nombres+" "+apellidos);
+                       this.setVisible(false); 
+                    }
+                }
+             }
+        }else{
+            JOptionPane.showMessageDialog(null,"No selecciono ninguna fila");
+        }
     }//GEN-LAST:event_tabla1MouseClicked
 
     private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
-        if(recibe.getText().equals("1")){
-            Frm_facturap.cb2.setSelectedItem(nombres);
+        /*if(recibe.getText().equals("1")){
+            Frm_facturap.cb2.setSelectedItem(nombres+" "+apellidos);
+            Frm_facturap.cb2.setSelectedItem(nombres+" "+apellidos);
             this.setVisible(false); 
-        }// TODO add your handling code here:
+        }*/// TODO add your handling code here:
     }//GEN-LAST:event_enviarActionPerformed
         DefaultTableModel dm;
 

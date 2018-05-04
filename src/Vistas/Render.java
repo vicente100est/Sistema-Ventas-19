@@ -46,11 +46,11 @@ public Render( int stock)
     
     if(varStock>0 && varStock<=5 ){
         
-              setBackground(new Color(255, 127, 59));
+              setBackground(new Color(255, 147, 97));
               //setBackground(new Color(88,214,141));
     }else{
         if(varStock==0){    
-        setBackground(new Color(255, 91, 91));
+        setBackground(new Color(255, 102, 114));
         }
         else{     
              setBackground(new Color(255,255,255));

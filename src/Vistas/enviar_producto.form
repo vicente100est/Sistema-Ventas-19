@@ -75,7 +75,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="txt_recibe" min="-2" pref="44" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="enviar" min="-2" pref="87" max="-2" attributes="0"/>
+                          <Component id="enviarProducto" min="-2" pref="87" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
                   <Component id="sp1" min="-2" pref="345" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="enviar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="enviarProducto" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="txt_recibe" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
@@ -187,7 +187,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="enviar">
+        <Component class="javax.swing.JButton" name="enviarProducto">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
@@ -195,8 +195,11 @@
             <Property name="text" type="java.lang.String" value="ENVIAR"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enviarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enviarProductoActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JTextField" name="txt_recibe">
           <AuxValues>

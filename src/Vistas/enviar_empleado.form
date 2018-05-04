@@ -75,9 +75,9 @@
                   <EmptySpace pref="29" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="txt_recibe" min="-2" pref="37" max="-2" attributes="0"/>
+                          <Component id="txt_recibeEmpleado" min="-2" pref="37" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="enviar" min="-2" max="-2" attributes="0"/>
+                          <Component id="enviarEmpleado" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
@@ -114,8 +114,8 @@
                   <Component id="jScrollPane1" min="-2" pref="268" max="-2" attributes="0"/>
                   <EmptySpace type="separate" pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txt_recibe" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="enviar" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="txt_recibeEmpleado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="enviarEmpleado" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
               </Group>
@@ -180,7 +180,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="enviar">
+        <Component class="javax.swing.JButton" name="enviarEmpleado">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="1"/>
@@ -188,10 +188,13 @@
             <Property name="text" type="java.lang.String" value="ENVIAR"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enviarActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enviarEmpleadoActionPerformed"/>
           </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
+          </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="txt_recibe">
+        <Component class="javax.swing.JTextField" name="txt_recibeEmpleado">
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
           </AuxValues>

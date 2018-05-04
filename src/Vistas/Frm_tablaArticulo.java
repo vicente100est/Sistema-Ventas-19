@@ -25,7 +25,8 @@ String codigo,referencia,cantidad,marca,valor;
     public Frm_tablaArticulo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
+        setLocation(250,150);
         checkCodigo.setSelected(true);
 
         //cb1.setSelectedIndex(2);

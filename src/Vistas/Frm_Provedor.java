@@ -47,6 +47,9 @@ public class Frm_Provedor extends javax.swing.JDialog {
     }
     
 public void desactivar(){
+    
+            jPanel1.setVisible(false);
+    
             txtnombre.setEditable(false);
             txtcedula.setEditable(false);
             txtcbu.setEditable(false);
@@ -61,6 +64,8 @@ public void desactivar(){
             btn_eliminara.setVisible(false);
 }  
 public void nuevoo(){
+    
+            jPanel1.setVisible(true);
 
             txtnombre.setText("");
             txtcedula.setText("");

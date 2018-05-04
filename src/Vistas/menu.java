@@ -142,9 +142,8 @@ public class menu extends javax.swing.JFrame {
         panelBotones.setBackground(new java.awt.Color(255, 255, 255));
         panelBotones.setOpaque(false);
 
-        botonArticulos1.setBackground(new java.awt.Color(0, 102, 153));
+        botonArticulos1.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos1.setForeground(new java.awt.Color(255, 255, 255));
         botonArticulos1.setText("Articulos");
         botonArticulos1.setFocusCycleRoot(true);
         botonArticulos1.setFocusable(false);
@@ -152,15 +151,13 @@ public class menu extends javax.swing.JFrame {
         botonArticulos1.setRolloverEnabled(false);
         botonArticulos1.setVerifyInputWhenFocusTarget(false);
 
-        botonArticulos2.setBackground(new java.awt.Color(0, 102, 153));
+        botonArticulos2.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos2.setForeground(new java.awt.Color(255, 255, 255));
         botonArticulos2.setText("Proveedores");
         botonArticulos2.setFocusable(false);
 
-        botonArticulos3.setBackground(new java.awt.Color(0, 102, 153));
+        botonArticulos3.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos3.setForeground(new java.awt.Color(255, 255, 255));
         botonArticulos3.setText("Clientes");
         botonArticulos3.setFocusable(false);
         botonArticulos3.addActionListener(new java.awt.event.ActionListener() {
@@ -169,27 +166,23 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
-        botonArticulos4.setBackground(new java.awt.Color(255, 255, 255));
+        botonArticulos4.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos4.setForeground(new java.awt.Color(0, 102, 153));
         botonArticulos4.setText("Remitos");
         botonArticulos4.setFocusable(false);
 
-        botonArticulos5.setBackground(new java.awt.Color(255, 255, 255));
+        botonArticulos5.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos5.setForeground(new java.awt.Color(0, 102, 153));
         botonArticulos5.setText("Facturas");
         botonArticulos5.setFocusable(false);
 
-        botonArticulos6.setBackground(new java.awt.Color(0, 102, 153));
+        botonArticulos6.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos6.setForeground(new java.awt.Color(255, 255, 255));
         botonArticulos6.setText("Empleados");
         botonArticulos6.setFocusable(false);
 
-        botonArticulos7.setBackground(new java.awt.Color(255, 255, 255));
+        botonArticulos7.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos7.setForeground(new java.awt.Color(0, 102, 153));
         botonArticulos7.setText("Presupuestos");
         botonArticulos7.setFocusable(false);
         botonArticulos7.addActionListener(new java.awt.event.ActionListener() {
@@ -198,21 +191,18 @@ public class menu extends javax.swing.JFrame {
             }
         });
 
-        botonArticulos8.setBackground(new java.awt.Color(0, 102, 153));
+        botonArticulos8.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos8.setForeground(new java.awt.Color(255, 255, 255));
         botonArticulos8.setText("Reporte Facturas");
         botonArticulos8.setFocusable(false);
 
-        botonArticulos9.setBackground(new java.awt.Color(0, 102, 153));
+        botonArticulos9.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos9.setForeground(new java.awt.Color(255, 255, 255));
         botonArticulos9.setText("Reporte Clientes");
         botonArticulos9.setFocusable(false);
 
-        botonArticulos10.setBackground(new java.awt.Color(0, 102, 153));
+        botonArticulos10.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        botonArticulos10.setForeground(new java.awt.Color(255, 255, 255));
         botonArticulos10.setText("Reporte Articulos");
         botonArticulos10.setFocusable(false);
 
@@ -220,21 +210,24 @@ public class menu extends javax.swing.JFrame {
         panelBotones.setLayout(panelBotonesLayout);
         panelBotonesLayout.setHorizontalGroup(
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(botonArticulos1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(botonArticulos2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(botonArticulos3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(botonArticulos6, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(botonArticulos5, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(botonArticulos4, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(botonArticulos7, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(botonArticulos8, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(botonArticulos9, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(botonArticulos10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(panelBotonesLayout.createSequentialGroup()
+                .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(botonArticulos1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonArticulos2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonArticulos3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonArticulos6, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonArticulos5, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonArticulos4, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonArticulos7, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonArticulos8, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonArticulos9, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonArticulos10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         panelBotonesLayout.setVerticalGroup(
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBotonesLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addComponent(botonArticulos1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonArticulos2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,7 +247,7 @@ public class menu extends javax.swing.JFrame {
                 .addComponent(botonArticulos9, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(botonArticulos10, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
