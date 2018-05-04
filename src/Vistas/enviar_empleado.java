@@ -292,6 +292,7 @@ String telefono,cedula,nombres,apellidos,direccion;
             JOptionPane.showMessageDialog(null,"No selecciono ninguna fila");
         }
         if(txt_recibeEmpleado.getText().equals("1")){
+  
             Frm_facturap.cb1.setSelectedItem(nombres+" "+apellidos);
             this.setVisible(false);
         }else{

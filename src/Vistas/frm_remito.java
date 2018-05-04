@@ -40,12 +40,10 @@ public class frm_remito extends javax.swing.JFrame {
     /**
      * Creates new form frm_remito
      */
-    public void cerrar(){
-    
-    this.setVisible(false);
-    
-    
+    public void cerrar(){ 
+        this.setVisible(false);  
     }
+    
     public void inabilita(){
     cbEmpleado.setEnabled(false);
     cbCliente.setEnabled(false);
@@ -263,12 +261,15 @@ fec.setText(año+"/"+mes+"/"+dia);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
-        panelImage1.setBackground(new java.awt.Color(255, 255, 255));
+        panelImage1.setBackground(new java.awt.Color(153, 204, 255));
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoMenumar2.png"))); // NOI18N
         panelImage1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -767,6 +768,7 @@ fec.setText(año+"/"+mes+"/"+dia);
 
                                 } catch(SQLException e){
                                     JOptionPane.showMessageDialog(null,"Este Producto Ya Existessssssssssss") ;
+                                    System.out.println(e);
 
                                 } catch(ClassNotFoundException e){
                                     JOptionPane.showMessageDialog(null,"Error en la Base de Datos") ;                               }
@@ -868,7 +870,18 @@ fec.setText(año+"/"+mes+"/"+dia);
             Statement consulta=conn.createStatement();
             nomempleado = (String)cbEmpleado.getSelectedItem();
             cod_empleado=null;
-            ResultSet rs = consulta.executeQuery("SELECT cod_empleado FROM empleado WHERE (nombres = '"+cbEmpleado.getSelectedItem()+"')");
+            
+            String cadena=cbEmpleado.getSelectedItem().toString();
+            int i=0;
+  
+            
+            while(cadena.charAt(i)!=' ') { 
+               i++;
+            }  
+            String SubCadenaNombreEmpleado = cadena.substring(0,i);
+            String SubCadenaApellidoEmpleado = cadena.substring(i+1,cadena.length());
+       
+            ResultSet rs = consulta.executeQuery("SELECT cod_empleado FROM empleado WHERE (nombres = '"+SubCadenaNombreEmpleado+"' AND apellidos = '"+SubCadenaApellidoEmpleado+"' )");
             while (rs.next()) {
                 cod_empleado= rs.getString("cod_empleado");
             }
@@ -908,7 +921,18 @@ fec.setText(año+"/"+mes+"/"+dia);
             Statement consulta=conn.createStatement();
             nomcliente = (String)cbCliente.getSelectedItem();
             codigocliente=null;
-            ResultSet rs = consulta.executeQuery("SELECT cod_cliente FROM cliente WHERE (nombres = '"+cbCliente.getSelectedItem()+"')");
+            
+            String cadena=cbCliente.getSelectedItem().toString();
+            int i=0;
+  
+            
+            while(cadena.charAt(i)!=' ') { 
+               i++;
+            }  
+            String SubCadenaNombreCliente = cadena.substring(0,i);
+            String SubCadenaApellidoCliente = cadena.substring(i+1,cadena.length());
+            
+            ResultSet rs = consulta.executeQuery("SELECT cod_cliente FROM cliente WHERE (nombres = '"+SubCadenaNombreCliente+"' AND apellidos = '"+SubCadenaApellidoCliente+"')");
             while (rs.next()) {
                 codigocliente= rs.getString("cod_cliente");
             }
@@ -1109,7 +1133,7 @@ fec.setText(año+"/"+mes+"/"+dia);
                         subtotal=totalsub+subtotal;
                         tabla1.setValueAt(totalsub,fila,3);
                         sub.setText(""+subtotal);
-                        int ivas=(int) (subtotal * 1);
+                        int ivas=(int) (subtotal * 0);
                         iva.setText(""+ivas);
                         int totals=subtotal+ivas;
                         total.setText(""+totals);
@@ -1208,6 +1232,10 @@ fec.setText(año+"/"+mes+"/"+dia);
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
        cerrar();
     }//GEN-LAST:event_formWindowClosing
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        cerrar();
+    }//GEN-LAST:event_formWindowClosed
     
     /**
      * @param args the command line arguments

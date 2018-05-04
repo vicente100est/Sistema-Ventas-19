@@ -216,6 +216,7 @@ String telefono,cedula,nombres,apellidos,direccion;
              telefono= tabla1.getValueAt(Select,4).toString();
              
              if(recibe.getText().equals("1")){ 
+
                 Frm_facturap.cb2.setSelectedItem(nombres+" "+apellidos);
                 this.setVisible(false); 
              }else{

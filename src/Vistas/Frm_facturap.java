@@ -275,7 +275,7 @@ fec.setText(año+"/"+mes+"/"+dia);
         panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/menumar.png"))); // NOI18N
         panelImage1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBackground(new java.awt.Color(153, 204, 255));
         jPanel4.setLayout(null);
 
         fec.setEditable(false);
@@ -908,7 +908,18 @@ fec.setText(año+"/"+mes+"/"+dia);
             Statement consulta=conn.createStatement();
             nomempleado = (String)cb1.getSelectedItem();
             cod_empleado=null;
-            ResultSet rs = consulta.executeQuery("SELECT cod_empleado FROM empleado WHERE (nombres = '"+cb1.getSelectedItem()+"')");
+            
+            String cadena=cb1.getSelectedItem().toString();
+            int i=0;
+  
+            
+            while(cadena.charAt(i)!=' ') { 
+               i++;
+            }  
+            String SubCadenaNombreEmpleado = cadena.substring(0,i);
+            String SubCadenaApellidoEmpleado = cadena.substring(i+1,cadena.length());
+            
+            ResultSet rs = consulta.executeQuery("SELECT cod_empleado FROM empleado WHERE (nombres = '"+SubCadenaNombreEmpleado+"' AND apellidos = '"+SubCadenaApellidoEmpleado+"')");
             while (rs.next()) {
                 cod_empleado= rs.getString("cod_empleado");
             }
@@ -941,7 +952,19 @@ enviar_empleado.enviarEmpleado.setVisible(false);
             Statement consulta=conn.createStatement();
             nomcliente = (String)cb2.getSelectedItem();
             codigocliente=null;
-            ResultSet rs = consulta.executeQuery("SELECT cod_cliente FROM cliente WHERE (nombres = '"+cb2.getSelectedItem()+"')");
+            String cadena=cb2.getSelectedItem().toString();
+            int i=0;
+  
+            
+            while(cadena.charAt(i)!=' ') { 
+               i++;
+            }  
+            String SubCadenaNombreCliente = cadena.substring(0,i);
+            String SubCadenaApellidoCliente = cadena.substring(i+1,cadena.length());
+            
+
+            
+            ResultSet rs = consulta.executeQuery("SELECT cod_cliente FROM cliente WHERE (nombres = '"+SubCadenaNombreCliente+"' AND apellidos = '"+SubCadenaApellidoCliente+"')");
             while (rs.next()) {
                 codigocliente= rs.getString("cod_cliente");
             }
@@ -1128,7 +1151,7 @@ enviar_producto.enviarProducto.setVisible(false);
                         subtotal=totalsub+subtotal;
                         tabla.setValueAt(totalsub,fila,3);
                         sub.setText(""+subtotal);
-                        int ivas=(int) (subtotal * 0.16);
+                        int ivas=(int) (subtotal * 0);
                         iva.setText(""+ivas);
                         int totals=subtotal+ivas;
                         total.setText(""+totals);
@@ -1220,9 +1243,7 @@ enviar_producto.enviarProducto.setVisible(false);
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-cerrar();
-
-
+        cerrar();
 // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
 

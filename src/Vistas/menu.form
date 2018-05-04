@@ -644,11 +644,11 @@
                           <Component id="conectado" min="-2" pref="64" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="1169" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <Component id="panelBotones" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="1211" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -723,18 +723,20 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="botonArticulos1" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="botonArticulos2" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="botonArticulos3" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="botonArticulos6" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="botonArticulos5" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="botonArticulos4" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="botonArticulos7" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="botonArticulos8" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="botonArticulos9" alignment="0" min="-2" pref="251" max="-2" attributes="0"/>
-                          <Component id="botonArticulos10" alignment="1" min="-2" pref="251" max="-2" attributes="0"/>
+                          <Component id="botonArticulos10" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="botonArticulos1" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonArticulos2" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonArticulos3" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonArticulos6" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonArticulos5" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonArticulos4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonArticulos7" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonArticulos9" alignment="0" max="32767" attributes="0"/>
+                              <Component id="botonArticulos8" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="33" max="32767" attributes="0"/>
+                      <EmptySpace pref="55" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -782,6 +784,9 @@
                 <Property name="rolloverEnabled" type="boolean" value="false"/>
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonArticulos1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonArticulos2">
               <Properties>
@@ -794,6 +799,9 @@
                 <Property name="text" type="java.lang.String" value="Proveedores"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonArticulos2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonArticulos3">
               <Properties>
@@ -821,6 +829,9 @@
                 <Property name="text" type="java.lang.String" value="Remitos"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonArticulos4ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonArticulos5">
               <Properties>
@@ -833,6 +844,9 @@
                 <Property name="text" type="java.lang.String" value="Facturas"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonArticulos5ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonArticulos6">
               <Properties>
@@ -845,6 +859,9 @@
                 <Property name="text" type="java.lang.String" value="Empleados"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonArticulos6ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonArticulos7">
               <Properties>
@@ -867,11 +884,14 @@
                   <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="24" style="1"/>
+                  <Font name="Tahoma" size="22" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Facturas"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonArticulos8ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonArticulos9">
               <Properties>
@@ -879,11 +899,14 @@
                   <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="24" style="1"/>
+                  <Font name="Tahoma" size="22" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Clientes"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonArticulos9ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="botonArticulos10">
               <Properties>
@@ -891,11 +914,14 @@
                   <Color blue="ff" green="99" red="33" type="rgb"/>
                 </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Tahoma" size="24" style="1"/>
+                  <Font name="Tahoma" size="22" style="1"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reporte Articulos"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonArticulos10ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

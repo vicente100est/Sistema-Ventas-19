@@ -28,13 +28,11 @@ public class menu extends javax.swing.JFrame {
     /** Creates new form menu */
     public menu() {
         initComponents();
-       
         
         setTitle("Sistema De Facturacion System Electronic");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
- M_conectar.setEnabled(false);
-       
-        
+        M_conectar.setEnabled(false);
+          
     }
 
     public void iniciar(){
@@ -150,11 +148,21 @@ public class menu extends javax.swing.JFrame {
         botonArticulos1.setRequestFocusEnabled(false);
         botonArticulos1.setRolloverEnabled(false);
         botonArticulos1.setVerifyInputWhenFocusTarget(false);
+        botonArticulos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonArticulos1ActionPerformed(evt);
+            }
+        });
 
         botonArticulos2.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonArticulos2.setText("Proveedores");
         botonArticulos2.setFocusable(false);
+        botonArticulos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonArticulos2ActionPerformed(evt);
+            }
+        });
 
         botonArticulos3.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -170,16 +178,31 @@ public class menu extends javax.swing.JFrame {
         botonArticulos4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonArticulos4.setText("Remitos");
         botonArticulos4.setFocusable(false);
+        botonArticulos4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonArticulos4ActionPerformed(evt);
+            }
+        });
 
         botonArticulos5.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos5.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonArticulos5.setText("Facturas");
         botonArticulos5.setFocusable(false);
+        botonArticulos5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonArticulos5ActionPerformed(evt);
+            }
+        });
 
         botonArticulos6.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos6.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         botonArticulos6.setText("Empleados");
         botonArticulos6.setFocusable(false);
+        botonArticulos6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonArticulos6ActionPerformed(evt);
+            }
+        });
 
         botonArticulos7.setBackground(new java.awt.Color(51, 153, 255));
         botonArticulos7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -192,19 +215,34 @@ public class menu extends javax.swing.JFrame {
         });
 
         botonArticulos8.setBackground(new java.awt.Color(51, 153, 255));
-        botonArticulos8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        botonArticulos8.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
         botonArticulos8.setText("Reporte Facturas");
         botonArticulos8.setFocusable(false);
+        botonArticulos8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonArticulos8ActionPerformed(evt);
+            }
+        });
 
         botonArticulos9.setBackground(new java.awt.Color(51, 153, 255));
-        botonArticulos9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        botonArticulos9.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
         botonArticulos9.setText("Reporte Clientes");
         botonArticulos9.setFocusable(false);
+        botonArticulos9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonArticulos9ActionPerformed(evt);
+            }
+        });
 
         botonArticulos10.setBackground(new java.awt.Color(51, 153, 255));
-        botonArticulos10.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        botonArticulos10.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
         botonArticulos10.setText("Reporte Articulos");
         botonArticulos10.setFocusable(false);
+        botonArticulos10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonArticulos10ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
         panelBotones.setLayout(panelBotonesLayout);
@@ -212,17 +250,18 @@ public class menu extends javax.swing.JFrame {
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBotonesLayout.createSequentialGroup()
                 .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonArticulos1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArticulos2, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArticulos3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArticulos6, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArticulos5, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArticulos4, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArticulos7, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArticulos8, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArticulos9, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonArticulos10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(botonArticulos10)
+                    .addGroup(panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(botonArticulos1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonArticulos2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonArticulos3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonArticulos6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonArticulos5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonArticulos4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonArticulos7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonArticulos9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonArticulos8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         panelBotonesLayout.setVerticalGroup(
             panelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,10 +304,10 @@ public class menu extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(conectado, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(1169, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelImage1Layout.createSequentialGroup()
                 .addComponent(panelBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 1211, Short.MAX_VALUE))
         );
         panelImage1Layout.setVerticalGroup(
             panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -635,21 +674,12 @@ public class menu extends javax.swing.JFrame {
     private void ClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesActionPerformed
     //  if (lb_tipo.getText().equals("Facturador")){
       //      Frm_cliente.btn_prueba.setEnabled(false);
-        //  Frm_cliente.btn_editara.setEnabled(false);
-      
-      
-       
-          
-          
-          Frm_cliente clien = new Frm_cliente(this, true);
+        //  Frm_cliente.btn_editara.setEnabled(false);   
+        Frm_cliente clien = new Frm_cliente(this, true);
        // clien.setLocationRelativeTo(this);
-        clien.setVisible(true);
-          
-        
+        clien.setVisible(true);   
      
-     // }
-        
-        
+     // }       
         
 }//GEN-LAST:event_ClientesActionPerformed
 
@@ -663,37 +693,31 @@ public class menu extends javax.swing.JFrame {
        Frm_Provedor prove = new Frm_Provedor(this, true);
        //prove.setLocationRelativeTo(this);
        prove.setVisible(true);
-               
-               
+                              
 }//GEN-LAST:event_ProveedoresActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-     Frm_tablacliente cc = new Frm_tablacliente(this, true);
-     cc.setVisible(true);
+        Frm_tablacliente cc = new Frm_tablacliente(this, true);
+        cc.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-Frm_tablaEmpleado ce=new Frm_tablaEmpleado(this, true);
-ce.setVisible(true);
+    Frm_tablaEmpleado ce=new Frm_tablaEmpleado(this, true);
+    ce.setVisible(true);
         
-
-
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-Frm_tabalaProvedor cp = new Frm_tabalaProvedor(this, true);
-cp.setVisible(true);
+    Frm_tabalaProvedor cp = new Frm_tabalaProvedor(this, true);
+    cp.setVisible(true);
         
-
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-Frm_tablaArticulo ca= new Frm_tablaArticulo(this, true);
-ca.setVisible(true);
-
-        
+    Frm_tablaArticulo ca= new Frm_tablaArticulo(this, true);
+    ca.setVisible(true);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -704,9 +728,6 @@ ca.setVisible(true);
        repor .setVisible(true);
        repor.setLocationRelativeTo(this);
          
-
-
-
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
@@ -718,26 +739,25 @@ ca.setVisible(true);
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
-  frm_reportecliente cliente = new frm_reportecliente();
+       frm_reportecliente cliente = new frm_reportecliente();
        cliente.setVisible(true);        
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-Object[] opciones ={"Aceptar","Cancelar"};
-int eleccion = JOptionPane.showOptionDialog(rootPane,"En Realidad desea Salir de la Aplicacion","Alerta",
-        
-        JOptionPane.YES_NO_OPTION,
-        JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
-if(eleccion ==JOptionPane.YES_OPTION){
-    System.exit(0);
-}else{
-    
-}
-        
-        
+        Object[] opciones ={"Aceptar","Cancelar"};
+        int eleccion = JOptionPane.showOptionDialog(rootPane,"En Realidad desea Salir de la Aplicacion","Alerta",
 
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE,null,opciones,"Aceptar");
+        if(eleccion ==JOptionPane.YES_OPTION){
+            System.exit(0);
+        }else{
+
+        }
+        
+        
 // TODO add your handling code here:
     }//GEN-LAST:event_formWindowClosing
 
@@ -747,9 +767,6 @@ if(eleccion ==JOptionPane.YES_OPTION){
    a.setVisible(true);
    a.setLocationRelativeTo(this);
    
-
-
-
 // TODO add your handling code here:
     }//GEN-LAST:event_M_acercaActionPerformed
 
@@ -762,9 +779,8 @@ if(eleccion ==JOptionPane.YES_OPTION){
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
     frm_acercade acer= new frm_acercade(this, true);
-        acer.setVisible(true);
+    acer.setVisible(true);
         
-
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
@@ -772,7 +788,6 @@ if(eleccion ==JOptionPane.YES_OPTION){
 
         registrarse r = new registrarse();
         r.setVisible(true);
-
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
@@ -790,21 +805,21 @@ else
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void M_desconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_desconectarActionPerformed
- M_desconectar.setEnabled(false);
-M_registrar.setEnabled(false);
-M_consultar.setEnabled(false);
- M_reportes.setEnabled(false);
- mantenimiento.setEnabled(false);
-M_acerca.setEnabled(false);
-M_conectar.setEnabled(true);
+    M_desconectar.setEnabled(false);
+    M_registrar.setEnabled(false);
+    M_consultar.setEnabled(false);
+    M_reportes.setEnabled(false);
+    mantenimiento.setEnabled(false);
+    M_acerca.setEnabled(false);
+    M_conectar.setEnabled(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_M_desconectarActionPerformed
 
     private void M_conectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_M_conectarActionPerformed
 
-        usuario usuarios = new usuario();
- usuarios.setVisible(true);
- this.dispose();
+    usuario usuarios = new usuario();
+    usuarios.setVisible(true);
+    this.dispose();
         
         // TODO add your handling code here:
     }//GEN-LAST:event_M_conectarActionPerformed
@@ -812,17 +827,12 @@ M_conectar.setEnabled(true);
     private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
 
         // Llamar aun pdf 
-        try {
-     File path = new File ("MANUAL.pdf");
-     Desktop.getDesktop().open(path);
-}catch (IOException ex) {
-     ex.printStackTrace();
-}
-
-
-
-
-
+    try {
+        File path = new File ("MANUAL.pdf");
+        Desktop.getDesktop().open(path);
+    }catch (IOException ex) {
+        ex.printStackTrace();
+    }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1MouseClicked
@@ -840,12 +850,56 @@ M_conectar.setEnabled(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void botonArticulos7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos7ActionPerformed
-        // TODO add your handling code here:
+        new Frm_presupuesto ().setVisible(true);
     }//GEN-LAST:event_botonArticulos7ActionPerformed
 
     private void botonArticulos3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos3ActionPerformed
-        // TODO add your handling code here:
+        Frm_cliente clien = new Frm_cliente(this, true);
+       // clien.setLocationRelativeTo(this);
+        clien.setVisible(true);
     }//GEN-LAST:event_botonArticulos3ActionPerformed
+
+    private void botonArticulos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos1ActionPerformed
+       Frm_Articulo arti = new Frm_Articulo(this,true);
+      //arti.setLocationRelativeTo(this);
+      arti.setVisible(true);
+    }//GEN-LAST:event_botonArticulos1ActionPerformed
+
+    private void botonArticulos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos2ActionPerformed
+       Frm_Provedor prove = new Frm_Provedor(this, true);
+       //prove.setLocationRelativeTo(this);
+       prove.setVisible(true);
+    }//GEN-LAST:event_botonArticulos2ActionPerformed
+
+    private void botonArticulos6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos6ActionPerformed
+       Frm_Empleado emple=new Frm_Empleado(this,true);
+       //emple.setLocationRelativeTo(this);
+       emple.setVisible(true);
+    }//GEN-LAST:event_botonArticulos6ActionPerformed
+
+    private void botonArticulos5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos5ActionPerformed
+        new Frm_facturap ().setVisible(true);
+    }//GEN-LAST:event_botonArticulos5ActionPerformed
+
+    private void botonArticulos4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos4ActionPerformed
+        new frm_remito ().setVisible(true);
+    }//GEN-LAST:event_botonArticulos4ActionPerformed
+
+    private void botonArticulos8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos8ActionPerformed
+       frm_reportefactura repor = new frm_reportefactura();
+       repor .setVisible(true);
+       repor.setLocationRelativeTo(this);
+    }//GEN-LAST:event_botonArticulos8ActionPerformed
+
+    private void botonArticulos9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos9ActionPerformed
+       frm_reportecliente cliente = new frm_reportecliente();
+       cliente.setVisible(true);
+    }//GEN-LAST:event_botonArticulos9ActionPerformed
+
+    private void botonArticulos10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonArticulos10ActionPerformed
+       frm_reportecliente cliente = new frm_reportecliente();
+       cliente.setVisible(true);
+    }//GEN-LAST:event_botonArticulos10ActionPerformed
 
     /**
     * @param args the command line arguments
