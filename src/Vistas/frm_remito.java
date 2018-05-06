@@ -70,6 +70,8 @@ public class frm_remito extends javax.swing.JFrame {
     btn_guardara.setVisible(false);
     b42.setVisible(false);
     
+    total2.setVisible(false);
+    
     }
     public void habilitar(){
         
@@ -141,7 +143,8 @@ fec.setText(año+"/"+mes+"/"+dia);*/
                 Statement consulta=conn.createStatement(); // crea una variable que se encargue del código de sql
                 //// hasta aquí es el mismo código del guardar///////
                 ResultSet   res= consulta.executeQuery("select * from articulo order by referencia");
-
+                
+                
                 int i;
                 cbArticulo.removeAllItems();
                 cbArticulo.addItem("SELECCIONE ARTICULO");
@@ -272,6 +275,7 @@ fec.setText(año+"/"+mes+"/"+dia);*/
         panelImage5 = new org.edisoncor.gui.panel.PanelImage();
         jLabel10 = new javax.swing.JLabel();
         calendario = new com.toedter.calendar.JDateChooser();
+        total2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -511,8 +515,8 @@ fec.setText(año+"/"+mes+"/"+dia);*/
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(26, 26, 26)
@@ -524,27 +528,27 @@ fec.setText(año+"/"+mes+"/"+dia);*/
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(cbArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel9)))))
-                        .addGap(19, 19, 19))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel5)
+                                .addComponent(jLabel6)
+                                .addComponent(cant33, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(b41, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(buscare, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(buscare1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cbCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)))
-                        .addGap(22, 22, 22)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)
-                        .addComponent(jLabel6)
-                        .addComponent(cant33, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(b41, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(buscare, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGap(16, 16, 16)
+                        .addComponent(cbEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -660,30 +664,37 @@ fec.setText(año+"/"+mes+"/"+dia);*/
             .addGroup(panelImage1Layout.createSequentialGroup()
                 .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(panelImage1Layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(panelImage5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
-                        .addComponent(jLabel2)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel10)
-                        .addGap(12, 12, 12)
-                        .addComponent(fact, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelImage1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelImage1Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
-                        .addComponent(btn_guardara, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(b42, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40)
+                        .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(panelImage1Layout.createSequentialGroup()
+                                .addComponent(panelImage5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel2)
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel10)
+                                .addGap(12, 12, 12)
+                                .addComponent(fact, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelImage1Layout.createSequentialGroup()
+                                .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panelImage1Layout.createSequentialGroup()
+                                        .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(51, 51, 51)
+                                        .addComponent(btn_guardara, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(62, 62, 62)
+                                        .addComponent(b42, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelImage1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(total2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(30, 30, 30)))
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(29, 29, 29))
         );
         panelImage1Layout.setVerticalGroup(
@@ -694,32 +705,27 @@ fec.setText(año+"/"+mes+"/"+dia);*/
                     .addComponent(panelImage5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelImage1Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(jLabel2))
-                    .addGroup(panelImage1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel10))
-                    .addGroup(panelImage1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelImage1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fact, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8))))
-                .addGap(21, 21, 21)
+                        .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel10)
+                            .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(fact, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel8)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelImage1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelImage1Layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
                         .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btn_guardara, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(b42, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(b42, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(total2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -730,7 +736,7 @@ fec.setText(año+"/"+mes+"/"+dia);*/
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -785,11 +791,11 @@ fec.setText(año+"/"+mes+"/"+dia);*/
 
                                     //dd
                                     //JOptionPane.showMessageDialog(null,"ejecuta insert remito") ;
-                                    consulta.executeUpdate("insert into remito (cod_remito,fecha,cod_cliente,cod_empleado) values('"+fact.getText()+"','"+fecha+"','"+codigocliente+"','"+cod_empleado+"')");
+                                    consulta.executeUpdate("insert into remito (cod_remito,fecha,cod_cliente,cod_empleado,tipo_pago) values('"+fact.getText()+"','"+fecha+"','"+codigocliente+"','"+cod_empleado+"','CUENTA CORRIENTE')");
                                     //JOptionPane.showMessageDialog(null,"yaa ejecuto insert remito") ;
                                     for (x=0;x<=fil-1;x++) {
                                         //JOptionPane.showMessageDialog(null,"ejecutainsert referncia remito") ;
-                                        consulta1.executeUpdate("insert into referencia_remito (cod_remito,valor_unitario,valor_total,referencia,cantidad,total) values('"+fact.getText()+"'  ,'"+tabla1.getValueAt(x,2)+"','"+tabla1.getValueAt(x,3)+"','"+tabla1.getValueAt(x,1)+"','"+tabla1.getValueAt(x,0)+"','"+total.getText()+"')");
+                                        consulta1.executeUpdate("insert into referencia_remito (cod_remito,valor_unitario,valor_total,referencia,cantidad,total) values('"+fact.getText()+"'  ,'"+tabla1.getValueAt(x,2)+"','"+tabla1.getValueAt(x,3)+"','"+tabla1.getValueAt(x,1)+"','"+tabla1.getValueAt(x,0)+"','"+total2.getText()+"')");
 
                                     }
                                     inabilita();
@@ -1272,6 +1278,7 @@ fec.setText(año+"/"+mes+"/"+dia);*/
                         iva.setText(""+ivas+"%");
                         int totals=subtotal+ivas;
                         total.setText("$"+totals);
+                        total2.setText(""+totals);
 
                         cbArticulo.setSelectedIndex(0);
                         cant33.setText("");
@@ -1415,6 +1422,7 @@ fec.setText(año+"/"+mes+"/"+dia);*/
         iva.setText(""+ivas+"%");
         int totals=subtotal+ivas;
         total.setText("$"+totals);
+        total2.setText(""+totals);
 
         cbArticulo.setSelectedIndex(0);
         cant33.setText("");
@@ -1463,6 +1471,7 @@ fec.setText(año+"/"+mes+"/"+dia);*/
         iva.setText(""+ivas+"%");
         int totals=subtotal+ivas;
         total.setText("$"+totals);
+        total2.setText(""+totals);
 
         cbArticulo.setSelectedIndex(0);
         cant33.setText("");
@@ -1567,11 +1576,12 @@ fec.setText(año+"/"+mes+"/"+dia);*/
                             
                         }
                         
-                        sub.setText(""+subtotal);
+                        sub.setText("$"+subtotal);
                         int ivas=(int) (subtotal * 0);
                         iva.setText(""+ivas+"%");
                         int totals=subtotal+ivas;
-                        total.setText(""+totals);
+                        total.setText("$"+totals);
+                        total2.setText(""+totals);
 
                         cbArticulo.setSelectedIndex(0);
                         cant33.setText("");
@@ -1651,5 +1661,6 @@ fec.setText(año+"/"+mes+"/"+dia);*/
     public static javax.swing.JTextField sub;
     private javax.swing.JTable tabla1;
     public static javax.swing.JTextField total;
+    private javax.swing.JTextField total2;
     // End of variables declaration//GEN-END:variables
 }

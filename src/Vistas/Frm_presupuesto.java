@@ -187,6 +187,7 @@ fec.setText(año+"/"+mes+"/"+dia);*/
      sub.setEnabled(false);
      iva.setEnabled(false);
     total.setEnabled(false);
+    total2.setVisible(false);
     
     }
     public void habilitar(){
@@ -261,6 +262,7 @@ fec.setText(año+"/"+mes+"/"+dia);*/
         cb1 = new javax.swing.JComboBox();
         buscare = new javax.swing.JButton();
         botonAgregarCliente = new javax.swing.JButton();
+        total2 = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         fact = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -542,6 +544,12 @@ fec.setText(año+"/"+mes+"/"+dia);*/
             }
         });
 
+        total2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                total2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -558,6 +566,8 @@ fec.setText(año+"/"+mes+"/"+dia);*/
                             .addGap(30, 30, 30)
                             .addComponent(b42, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(total2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -628,18 +638,24 @@ fec.setText(año+"/"+mes+"/"+dia);*/
                                 .addComponent(jLabel5)))))
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_guardara, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(b42, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_guardara, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(b42, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(total2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
         );
 
         jPanel2.setOpaque(false);
@@ -806,7 +822,7 @@ fec.setText(año+"/"+mes+"/"+dia);*/
                                     consulta.executeUpdate("insert into presupuesto (cod_presupuesto, fecha,cod_cliente,cod_empleado) values('"+fact.getText()+"','"+fecha+"','"+codigocliente+"','"+cod_empleado+"')");
                                     for (x=0;x<=fil-1;x++) {
 
-                                        consulta1.executeUpdate("insert into referencia_presupuesto (cod_presupuesto,valor_unitario,valor_total,referencia,cantidad,Total) values('"+fact.getText()+"','"+tabla.getValueAt(x,2)+"','"+tabla.getValueAt(x,3)+"','"+tabla.getValueAt(x,1)+"','"+tabla.getValueAt(x,0)+"','"+total.getText()+"')");
+                                        consulta1.executeUpdate("insert into referencia_presupuesto (cod_presupuesto,valor_unitario,valor_total,referencia,cantidad,Total) values('"+fact.getText()+"','"+tabla.getValueAt(x,2)+"','"+tabla.getValueAt(x,3)+"','"+tabla.getValueAt(x,1)+"','"+tabla.getValueAt(x,0)+"','"+total2.getText()+"')");
 
                                     }
                                     inabilita();
@@ -1262,6 +1278,7 @@ enviar_producto.txt_recibe.setText("11");
                         iva.setText(""+ivas+"%");
                         int totals=subtotal+ivas;
                         total.setText("$"+totals);
+                        total2.setText(""+totals);
 
                         cb3.setSelectedIndex(0);
                         cant.setText("");
@@ -1451,6 +1468,7 @@ if (evt.getKeyChar()==evt.VK_ENTER){
         iva.setText(""+ivas+"%");
         int totals=subtotal+ivas;
         total.setText("$"+totals);
+        total2.setText(""+totals);
 
         cb3.setSelectedIndex(0);
         cant.setText("");
@@ -1503,6 +1521,7 @@ if (evt.getKeyChar()==evt.VK_ENTER){
         iva.setText(""+ivas+"%");
         int totals=subtotal+ivas;
         total.setText("$"+totals);
+        total2.setText(""+totals);
 
         cb3.setSelectedIndex(0);
         cant.setText("");
@@ -1607,11 +1626,12 @@ if (evt.getKeyChar()==evt.VK_ENTER){
                             
                         }
                         
-                        sub.setText(""+subtotal);
+                        sub.setText("$"+subtotal);
                         int ivas=(int) (subtotal * 0);
                         iva.setText(""+ivas+"%");
                         int totals=subtotal+ivas;
-                        total.setText(""+totals);
+                        total.setText("$"+totals);
+                        total2.setText(""+totals);
 
                         cb3.setSelectedIndex(0);
                         cant.setText("");
@@ -1624,6 +1644,10 @@ if (evt.getKeyChar()==evt.VK_ENTER){
     private void cantKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cantKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_cantKeyReleased
+
+    private void total2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_total2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_total2ActionPerformed
 
     
     
@@ -1703,5 +1727,6 @@ if (evt.getKeyChar()==evt.VK_ENTER){
     public static javax.swing.JTextField sub;
     private javax.swing.JTable tabla;
     public static javax.swing.JTextField total;
+    private javax.swing.JTextField total2;
     // End of variables declaration//GEN-END:variables
 }
