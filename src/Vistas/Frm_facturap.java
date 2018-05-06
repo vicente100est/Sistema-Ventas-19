@@ -119,6 +119,7 @@ fec.setText(año+"/"+mes+"/"+dia); */
     cb1.setEnabled(false);
     cb2.setEnabled(false);
     cb3.setEnabled(false);
+    comboPago.setVisible(false);
     buscare.setEnabled(false);
     buscare1.setEnabled(false);
     buscare2.setEnabled(false);
@@ -148,6 +149,7 @@ fec.setText(año+"/"+mes+"/"+dia); */
     cb1.setEnabled(true);
     cb2.setEnabled(true);
     cb3.setEnabled(false);
+    comboPago.setVisible(true);
     buscare.setEnabled(true);
     buscare1.setEnabled(true);
     buscare2.setEnabled(false);
