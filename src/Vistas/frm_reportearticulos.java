@@ -147,7 +147,7 @@ public class frm_reportearticulos extends javax.swing.JFrame {
         enviar_producto form= new enviar_producto ();
         form.setVisible(true);
         form.toFront();
-        enviar_producto.txt_recibe.setText("1");
+        enviar_producto.txt_recibe.setText("22");
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

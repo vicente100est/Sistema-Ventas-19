@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.Calendar;
 import javax.swing.*;
 import java.sql.*;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -40,19 +41,24 @@ public class frm_remito extends javax.swing.JFrame {
     /**
      * Creates new form frm_remito
      */
+    String fecha="";
     public void cerrar(){ 
         this.setVisible(false);  
     }
     
     public void inabilita(){
+    setearFecha();
+    calendario.setEnabled(false);   
+        
     cbEmpleado.setEnabled(false);
     cbCliente.setEnabled(false);
     cbArticulo.setEnabled(false);
     buscare.setEnabled(false);
     buscare1.setEnabled(false);
     buscare2.setEnabled(false);
-    cant1.setEnabled(false);
+    cant33.setEditable(false);
      btnAgregar.setEnabled(false);
+     botonAgregarCliente.setEnabled(false);
      b41.setEnabled(false);
      //b43.setEnabled(false);
      b42.setEnabled(false);
@@ -66,17 +72,21 @@ public class frm_remito extends javax.swing.JFrame {
     
     }
     public void habilitar(){
-    cant1.requestFocus();
+        
+    calendario.setEnabled(true);
+        
+    //cant33.requestFocus();
     
      cbEmpleado.setEnabled(true);
     cbCliente.setEnabled(true);
-    cbArticulo.setEnabled(true);
+    cbArticulo.setEnabled(false);
     buscare.setEnabled(true);
     buscare1.setEnabled(true);
-    buscare2.setEnabled(true);
-    cant1.setEnabled(true);
-     btnAgregar.setEnabled(true);
-     b41.setEnabled(true);
+    buscare2.setEnabled(false);
+    cant33.setEditable(false);
+     btnAgregar.setEnabled(false);
+     botonAgregarCliente.setEnabled(true);
+     b41.setEnabled(false);
      //b43.setEnabled(true);
      b42.setEnabled(true);
      btn_guardara.setEnabled(true);
@@ -88,7 +98,11 @@ public class frm_remito extends javax.swing.JFrame {
     b42.setVisible(true);
     }
     
-   
+   public void setearFecha() {
+        
+        Calendar c2 = new GregorianCalendar();
+        calendario.setCalendar(c2);    
+    }
     
     
     
@@ -100,7 +114,7 @@ public class frm_remito extends javax.swing.JFrame {
 
         b42.setEnabled(false);
 
-Calendar c1 = Calendar.getInstance();
+/*Calendar c1 = Calendar.getInstance();
 
 dia = (Integer.toString(c1.get(Calendar.DATE)));
 if (dia.length()==1)
@@ -116,7 +130,7 @@ mes="0"+mes;
 
 año = (Integer.toString(c1.get(Calendar.YEAR)));
 
-fec.setText(año+"/"+mes+"/"+dia);
+fec.setText(año+"/"+mes+"/"+dia);*/
 
 
             try{
@@ -238,7 +252,7 @@ fec.setText(año+"/"+mes+"/"+dia);
         cbArticulo = new javax.swing.JComboBox();
         buscare2 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
-        cant1 = new javax.swing.JTextField();
+        cant33 = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         b41 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -252,12 +266,12 @@ fec.setText(año+"/"+mes+"/"+dia);
         iva = new javax.swing.JTextField();
         sub = new javax.swing.JTextField();
         btn_nuevo = new org.edisoncor.gui.button.ButtonSeven();
-        fec = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         fact = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         panelImage5 = new org.edisoncor.gui.panel.PanelImage();
         jLabel10 = new javax.swing.JLabel();
+        calendario = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -270,10 +284,9 @@ fec.setText(año+"/"+mes+"/"+dia);
         });
 
         panelImage1.setBackground(new java.awt.Color(153, 204, 255));
-        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoMenumar2.png"))); // NOI18N
-        panelImage1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoMenumar.png"))); // NOI18N
 
-        btn_guardara.setBackground(new java.awt.Color(204, 204, 204));
+        btn_guardara.setBackground(new java.awt.Color(102, 153, 255));
         btn_guardara.setText("Guardar");
         btn_guardara.setColorBrillo(new java.awt.Color(255, 255, 255));
         btn_guardara.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -282,9 +295,8 @@ fec.setText(año+"/"+mes+"/"+dia);
                 btn_guardaraActionPerformed(evt);
             }
         });
-        panelImage1.add(btn_guardara, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 570, 150, 60));
 
-        b42.setBackground(new java.awt.Color(204, 204, 204));
+        b42.setBackground(new java.awt.Color(102, 153, 255));
         b42.setText("Cancelar");
         b42.setColorBrillo(new java.awt.Color(255, 255, 255));
         b42.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -293,7 +305,6 @@ fec.setText(año+"/"+mes+"/"+dia);
                 b42ActionPerformed(evt);
             }
         });
-        panelImage1.add(b42, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 570, 150, 60));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel1.setOpaque(false);
@@ -370,10 +381,16 @@ fec.setText(año+"/"+mes+"/"+dia);
         jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel6.setText("Cantidad");
 
-        cant1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        cant1.addKeyListener(new java.awt.event.KeyAdapter() {
+        cant33.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cant33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
+        cant33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cant33ActionPerformed(evt);
+            }
+        });
+        cant33.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                cant1KeyTyped(evt);
+                cant33KeyTyped(evt);
             }
         });
 
@@ -416,7 +433,25 @@ fec.setText(año+"/"+mes+"/"+dia);
             new String [] {
                 "Cantidad", "Articulo", "Valor Unitario", "Valor Total"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla1MouseClicked(evt);
+            }
+        });
+        tabla1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tabla1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla1);
 
         botonAgregarCliente.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -447,7 +482,7 @@ fec.setText(año+"/"+mes+"/"+dia);
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cant1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cant33, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -503,7 +538,7 @@ fec.setText(año+"/"+mes+"/"+dia);
                         .addComponent(cbEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5)
                         .addComponent(jLabel6)
-                        .addComponent(cant1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cant33, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(b41, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(buscare, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -511,8 +546,6 @@ fec.setText(año+"/"+mes+"/"+dia);
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
-
-        panelImage1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 110, -1, 360));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jPanel3.setOpaque(false);
@@ -525,6 +558,15 @@ fec.setText(año+"/"+mes+"/"+dia);
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel13.setText("TOTAL");
+
+        total.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        total.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        iva.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        iva.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        sub.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sub.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -566,8 +608,6 @@ fec.setText(año+"/"+mes+"/"+dia);
                 .addContainerGap())
         );
 
-        panelImage1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 500, 250, 160));
-
         btn_nuevo.setBackground(new java.awt.Color(102, 153, 255));
         btn_nuevo.setText("Nuevo");
         btn_nuevo.setColorBrillo(new java.awt.Color(255, 255, 255));
@@ -577,25 +617,9 @@ fec.setText(año+"/"+mes+"/"+dia);
                 btn_nuevoActionPerformed(evt);
             }
         });
-        panelImage1.add(btn_nuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 570, 150, 60));
-
-        fec.setEditable(false);
-        fec.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        fec.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fecActionPerformed(evt);
-            }
-        });
-        fec.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                fecKeyTyped(evt);
-            }
-        });
-        panelImage1.add(fec, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 30, 160, 40));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel8.setText("Fecha");
-        panelImage1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(684, 40, 70, -1));
 
         fact.setEditable(false);
         fact.setBackground(new java.awt.Color(51, 255, 204));
@@ -607,11 +631,9 @@ fec.setText(año+"/"+mes+"/"+dia);
         fact.setOpaque(false);
         fact.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         fact.setSelectionColor(new java.awt.Color(0, 0, 0));
-        panelImage1.add(fact, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 50, 30));
 
         jLabel2.setFont(new java.awt.Font("Cambria", 1, 30)); // NOI18N
         jLabel2.setText("Remito");
-        panelImage1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
 
         panelImage5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/factura_1.png"))); // NOI18N
 
@@ -623,24 +645,92 @@ fec.setText(año+"/"+mes+"/"+dia);
         );
         panelImage5Layout.setVerticalGroup(
             panelImage5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 69, Short.MAX_VALUE)
         );
-
-        panelImage1.add(panelImage5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, -1, 69));
 
         jLabel10.setFont(new java.awt.Font("Cambria", 1, 30)); // NOI18N
         jLabel10.setText(" N°");
-        panelImage1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 40, -1, -1));
+
+        calendario.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+
+        javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
+        panelImage1.setLayout(panelImage1Layout);
+        panelImage1Layout.setHorizontalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(panelImage5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(jLabel2)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel10)
+                        .addGap(12, 12, 12)
+                        .addComponent(fact, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
+                        .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51)
+                        .addComponent(btn_guardara, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(62, 62, 62)
+                        .addComponent(b42, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29))
+        );
+        panelImage1Layout.setVerticalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelImage1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelImage5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel2))
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabel10))
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(calendario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fact, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))))
+                .addGap(21, 21, 21)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelImage1Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btn_guardara, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(b42, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+            .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, 670, Short.MAX_VALUE)
+            .addComponent(panelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -656,9 +746,9 @@ fec.setText(año+"/"+mes+"/"+dia);
                 if (cbCliente.getSelectedItem().equals("SELECCIONE CLIENTE")) {
                     JOptionPane.showMessageDialog(null, "Falta elegir el Cliente","Advertencia",JOptionPane.WARNING_MESSAGE);
                 }else {
-                    if (fec.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "Debe Digitar la Fecha","Advertencia",JOptionPane.WARNING_MESSAGE);
-                        fec.requestFocus();
+                    if (calendario.getDate() == null) {
+                        JOptionPane.showMessageDialog(null, "La fecha estaba vacia","Advertencia",JOptionPane.WARNING_MESSAGE);
+                        setearFecha();
                     }else {
                         if (fact.getText().equals("")) {
                             JOptionPane.showMessageDialog(null, "Debe Digitar Numero de la Factura","Advertencia",JOptionPane.WARNING_MESSAGE);
@@ -675,19 +765,34 @@ fec.setText(año+"/"+mes+"/"+dia);
                                     Statement consulta1=conn.createStatement();
                                     int fil = tabla1.getRowCount();
                                     int col = tabla1.getColumnCount();
+                                    
+                                    int año = calendario.getCalendar().get(Calendar.YEAR);
+                                    int mes = calendario.getCalendar().get(Calendar.MONTH);
+                                    int dia = calendario.getCalendar().get(Calendar.DAY_OF_MONTH);
+
+
+                                    if((mes+1)<10 && (dia>=10)){
+                                        fecha = (año+"/0"+(mes+1)+"/"+dia);
+                                    }else{
+                                        if(((mes+1)<10 && (dia<10))){
+                                              fecha = (año+"/0"+(mes+1)+"/0"+dia);
+                                        }else{
+                                               fecha = (año+"/"+(mes+1)+"/"+dia);
+                                        }
+                                    }
 
                                     int x,y;
 
                                     //dd
-                                    JOptionPane.showMessageDialog(null,"ejecuta insert remito") ;
-                                    consulta.executeUpdate("insert into remito (cod_remito,fecha,cod_cliente,cod_empleado) values('"+fact.getText()+"','"+fec.getText()+"','"+codigocliente+"','"+cod_empleado+"')");
-                                    JOptionPane.showMessageDialog(null,"yaa ejecuto insert remito") ;
+                                    //JOptionPane.showMessageDialog(null,"ejecuta insert remito") ;
+                                    consulta.executeUpdate("insert into remito (cod_remito,fecha,cod_cliente,cod_empleado) values('"+fact.getText()+"','"+fecha+"','"+codigocliente+"','"+cod_empleado+"')");
+                                    //JOptionPane.showMessageDialog(null,"yaa ejecuto insert remito") ;
                                     for (x=0;x<=fil-1;x++) {
-                                        JOptionPane.showMessageDialog(null,"ejecutainsert referncia remito") ;
+                                        //JOptionPane.showMessageDialog(null,"ejecutainsert referncia remito") ;
                                         consulta1.executeUpdate("insert into referencia_remito (cod_remito,valor_unitario,valor_total,referencia,cantidad,total) values('"+fact.getText()+"'  ,'"+tabla1.getValueAt(x,2)+"','"+tabla1.getValueAt(x,3)+"','"+tabla1.getValueAt(x,1)+"','"+tabla1.getValueAt(x,0)+"','"+total.getText()+"')");
 
                                     }
-
+                                    inabilita();
                                     JOptionPane.showMessageDialog(null,"Remito Adicionado") ;
                                     cbEmpleado.setSelectedIndex(0);
                                     cbCliente.setSelectedIndex(0);
@@ -695,7 +800,7 @@ fec.setText(año+"/"+mes+"/"+dia);
                                     sub.setText("");
                                     iva.setText("");
                                     total.setText("");
-                                    cant1.setText("");
+                                    cant33.setText("");
                                     
                                     //-------------------------------
                             
@@ -883,7 +988,7 @@ fec.setText(año+"/"+mes+"/"+dia);
        
             ResultSet rs = consulta.executeQuery("SELECT cod_empleado FROM empleado WHERE (nombres = '"+SubCadenaNombreEmpleado+"' AND apellidos = '"+SubCadenaApellidoEmpleado+"' )");
             while (rs.next()) {
-                cod_empleado= rs.getString("cod_empleado");
+                cod_empleado= rs.getString(1);
             }
             conn.close();
         } catch (ClassNotFoundException ex) {
@@ -891,6 +996,19 @@ fec.setText(año+"/"+mes+"/"+dia);
             ex.printStackTrace();
         }	  catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error SQL");
+        }
+        if(cbCliente.getSelectedItem().equals("SELECCIONE CLIENTE") || cbEmpleado.getSelectedItem().equals("SELECCIONE EMPLEADO")){
+            cbArticulo.setEnabled(false);
+            cant33.setEditable(false);
+            btnAgregar.setEnabled(false);
+            b41.setEnabled(false);
+            buscare2.setEnabled(false);
+        }else{
+           cbArticulo.setEnabled(true);
+           cant33.setEditable(true);
+           btnAgregar.setEnabled(true);
+           b41.setEnabled(true);
+           buscare2.setEnabled(true);
         }
     }//GEN-LAST:event_cbEmpleadoActionPerformed
 
@@ -934,7 +1052,7 @@ fec.setText(año+"/"+mes+"/"+dia);
             
             ResultSet rs = consulta.executeQuery("SELECT cod_cliente FROM cliente WHERE (nombres = '"+SubCadenaNombreCliente+"' AND apellidos = '"+SubCadenaApellidoCliente+"')");
             while (rs.next()) {
-                codigocliente= rs.getString("cod_cliente");
+                codigocliente= rs.getString(1);
             }
             conn.close();
         } catch (ClassNotFoundException e) {
@@ -942,6 +1060,19 @@ fec.setText(año+"/"+mes+"/"+dia);
             e.printStackTrace();
         }	  catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error SQL");
+        }
+        if(cbCliente.getSelectedItem().equals("SELECCIONE CLIENTE") || cbEmpleado.getSelectedItem().equals("SELECCIONE EMPLEADO")){
+            cbArticulo.setEnabled(false);
+            cant33.setEditable(false);
+            btnAgregar.setEnabled(false);
+            b41.setEnabled(false);
+            buscare2.setEnabled(false);
+        }else{
+           cbArticulo.setEnabled(true);
+           cant33.setEditable(true);
+           btnAgregar.setEnabled(true);
+           b41.setEnabled(true);
+           buscare2.setEnabled(true);
         }
     }//GEN-LAST:event_cbClienteActionPerformed
 
@@ -981,10 +1112,11 @@ fec.setText(año+"/"+mes+"/"+dia);
 
             ResultSet rs = consulta.executeQuery("SELECT cod_articulo FROM articulo WHERE (referencia = '"+cbArticulo.getSelectedItem()+"')");
             while (rs.next()) {
-                codigoproducto= rs.getString("cod_articulo");
+                codigoproducto= rs.getString(1);
             }
 
             conn.close();  // Cierra la conexión
+            
 
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Error Conexion");
@@ -992,7 +1124,7 @@ fec.setText(año+"/"+mes+"/"+dia);
         }	  catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Error SQL");
         }
-        
+        cant33.requestFocus();
     }//GEN-LAST:event_cbArticuloActionPerformed
 
     private void buscare2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscare2ActionPerformed
@@ -1014,22 +1146,14 @@ fec.setText(año+"/"+mes+"/"+dia);
         // TODO add your handling code here:
     }//GEN-LAST:event_buscare2KeyTyped
 
-    private void cant1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cant1KeyTyped
+    private void cant33KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cant33KeyTyped
         char c = evt.getKeyChar(); //este codigo se utiliza para solo numero en el tefil y espacio
         if (!((Character.isDigit(c))||(c==KeyEvent.VK_ENTER)||(c==KeyEvent.VK_BACK_SPACE))) {
             getToolkit().beep();
             evt.consume();
             JOptionPane.showMessageDialog(null, "Solo deben digitarse Numeros");
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_cant1KeyTyped
-
-    private void fecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fecActionPerformed
-
-    private void fecKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fecKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fecKeyTyped
+    }//GEN-LAST:event_cant33KeyTyped
 
     private void btnAgregarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAgregarMouseEntered
         //p40.setBackground(new java.awt.Color(255, 255, 255));
@@ -1043,8 +1167,8 @@ fec.setText(año+"/"+mes+"/"+dia);
     
     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        cbEmpleado.setEnabled(false);
-        cbCliente.setEnabled(false);
+        //cbEmpleado.setEnabled(false);
+        //cbCliente.setEnabled(false);
         int pe=0,fil = tabla1.getRowCount();
         for (int x=0;x<=fil-1;x++) {
             String aux= (String) (tabla1.getValueAt(x,1));
@@ -1063,10 +1187,10 @@ fec.setText(año+"/"+mes+"/"+dia);
                 JOptionPane.showMessageDialog(null, "Falta elegir el articulo");
             }else
             {
-                if (cant1.getText().equals(""))
+                if (cant33.getText().equals(""))
                 {
                     JOptionPane.showMessageDialog(null, "Debe Digitar la Cantidad de articulo a Llevar");
-                    cant1.requestFocus();
+                    cant33.requestFocus();
                 }else
                 {
 
@@ -1091,9 +1215,11 @@ fec.setText(año+"/"+mes+"/"+dia);
                         JOptionPane.showMessageDialog(null,"Error en el SQL") ;
                     }
 
-                    if (cant_ex < Integer.parseInt(cant1.getText()))
+                    if (cant_ex < Integer.parseInt(cant33.getText()))
                     {
                         JOptionPane.showMessageDialog(null, "No existe Cantidad Disponible de Dicho Articulo, La Cantidad Dispomible es: "+cant_ex);
+                        cant33.setText(""+cant_ex);
+                        cant33.requestFocus();
                     }
                     else
                     {
@@ -1102,7 +1228,7 @@ fec.setText(año+"/"+mes+"/"+dia);
                         //JOptionPane.showMessageDialog(null, fila+" "+columna);
                         DefaultTableModel modelo=(DefaultTableModel)tabla1.getModel();
                         modelo.addRow( new Object [] {null,null,null,null,null});
-                        tabla1.setValueAt(cant1.getText(),fila,0);
+                        tabla1.setValueAt(cant33.getText(),fila,0);
                         tabla1.setValueAt(nomproducto,fila,1);
 
                         try{
@@ -1129,17 +1255,26 @@ fec.setText(año+"/"+mes+"/"+dia);
                         }
 
                         tabla1.setValueAt(precio,fila,2);
-                        int totalsub=Integer.parseInt(precio)*Integer.parseInt(cant1.getText());
-                        subtotal=totalsub+subtotal;
-                        tabla1.setValueAt(totalsub,fila,3);
-                        sub.setText(""+subtotal);
+                        
+                        
+                        int fila2 = tabla1.getRowCount();
+                        subtotal=0;
+                        for (int x=0;x<=fila2-1;x++) {
+                            //String aux= (String) (tabla.getValueAt(x,1));
+                            int totalsub=Integer.parseInt((tabla1.getValueAt(x,2).toString()))*Integer.parseInt((tabla1.getValueAt(x,0).toString())); //a total sub le multiplico la cantidad por el precio de la fila
+                            subtotal=totalsub+subtotal;
+                            tabla1.setValueAt(totalsub,x,3);
+                            
+                        }
+                        
+                        sub.setText("$"+subtotal);
                         int ivas=(int) (subtotal * 0);
-                        iva.setText(""+ivas);
+                        iva.setText(""+ivas+"%");
                         int totals=subtotal+ivas;
-                        total.setText(""+totals);
+                        total.setText("$"+totals);
 
                         cbArticulo.setSelectedIndex(0);
-                        cant1.setText("");
+                        cant33.setText("");
                     }
                 }
             }
@@ -1186,7 +1321,7 @@ fec.setText(año+"/"+mes+"/"+dia);
         cbEmpleado.setSelectedIndex(0);
         cbCliente.setSelectedIndex(0);
         cbArticulo.setSelectedIndex(0);
-        cant1.setText("");
+        cant33.setText("");
         fact.setText("");
         sub.setText("");
         iva.setText("");
@@ -1236,6 +1371,215 @@ fec.setText(año+"/"+mes+"/"+dia);
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         cerrar();
     }//GEN-LAST:event_formWindowClosed
+
+    private void tabla1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tabla1KeyReleased
+        int Select=tabla1.getSelectedRow(), bandera=0;
+              
+        int fila2 = tabla1.getRowCount();
+        subtotal=0;
+        for (int x=0;x<=fila2-1;x++) {
+        //String aux= (String) (tabla.getValueAt(x,1));
+            try{
+                Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
+                Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
+                Connection conn=(Connection) DriverManager.getConnection(url,login,password); // esta es la verificación de la conexión con mysql
+                //Connection conn=(Connection) DriverManager.getConnection(url,usuario,contraseña); // esta es la verificación de la conexión con mysql
+                Statement consulta=conn.createStatement(); // crea una variable que se encargue del código de sql
+                //// hasta aquí es el mismo código del guardar///////
+                ResultSet   res= consulta.executeQuery("select cantidad from articulo where referencia = '"+tabla1.getValueAt(Select,1).toString()+"'");
+                while(res.next()){
+                    cant_ex=Integer.parseInt(res.getString(1));
+                    break;
+                }
+                res.close();
+                } catch(ClassNotFoundException e){
+                    JOptionPane.showMessageDialog(null,"No hay conexion con Mysql") ;
+
+                }catch(SQLException e){
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error en el SQL") ;
+                }
+
+                if (cant_ex < Integer.parseInt(tabla1.getValueAt(Select,0).toString()) && bandera==0){
+                    JOptionPane.showMessageDialog(null, "¡ATENCION! La Cantidad Disponible de Dicho Articulo es "+cant_ex+" unidades");
+                    bandera=1;
+                    tabla1.setValueAt(cant_ex,Select,0);
+                }
+                int totalsub=Integer.parseInt((tabla1.getValueAt(x,2).toString()))*Integer.parseInt((tabla1.getValueAt(x,0).toString())); //a total sub le multiplico la cantidad por el precio de la fila
+                subtotal=totalsub+subtotal;
+                tabla1.setValueAt(totalsub,x,3);        
+        }
+                        
+        sub.setText("$"+subtotal);
+        int ivas=(int) (subtotal * 0);
+        iva.setText(""+ivas+"%");
+        int totals=subtotal+ivas;
+        total.setText("$"+totals);
+
+        cbArticulo.setSelectedIndex(0);
+        cant33.setText("");
+    }//GEN-LAST:event_tabla1KeyReleased
+
+    private void tabla1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla1MouseClicked
+        int Select=tabla1.getSelectedRow(), bandera=0;
+              
+        int fila2 = tabla1.getRowCount();
+        subtotal=0;
+        for (int x=0;x<=fila2-1;x++) {
+        //String aux= (String) (tabla.getValueAt(x,1));
+            try{
+                Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
+                Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
+                Connection conn=(Connection) DriverManager.getConnection(url,login,password); // esta es la verificación de la conexión con mysql
+                //Connection conn=(Connection) DriverManager.getConnection(url,usuario,contraseña); // esta es la verificación de la conexión con mysql
+                Statement consulta=conn.createStatement(); // crea una variable que se encargue del código de sql
+                //// hasta aquí es el mismo código del guardar///////
+                ResultSet   res= consulta.executeQuery("select cantidad from articulo where referencia = '"+tabla1.getValueAt(Select,1).toString()+"'");
+                while(res.next()){
+                    cant_ex=Integer.parseInt(res.getString(1));
+                    break;
+                }
+                res.close();
+                } catch(ClassNotFoundException e){
+                    JOptionPane.showMessageDialog(null,"No hay conexion con Mysql") ;
+
+                }catch(SQLException e){
+                    System.out.println(e);
+                    JOptionPane.showMessageDialog(null,"Error en el SQL") ;
+                }
+
+                if (cant_ex < Integer.parseInt(tabla1.getValueAt(Select,0).toString()) && bandera==0){
+                    JOptionPane.showMessageDialog(null, "¡ATENCION! La Cantidad Disponible de Dicho Articulo es "+cant_ex+" unidades");
+                    bandera=1;
+                    tabla1.setValueAt(cant_ex,Select,0);
+                }
+                int totalsub=Integer.parseInt((tabla1.getValueAt(x,2).toString()))*Integer.parseInt((tabla1.getValueAt(x,0).toString())); //a total sub le multiplico la cantidad por el precio de la fila
+                subtotal=totalsub+subtotal;
+                tabla1.setValueAt(totalsub,x,3);        
+        }
+                        
+        sub.setText("$"+subtotal);
+        int ivas=(int) (subtotal * 0);
+        iva.setText(""+ivas+"%");
+        int totals=subtotal+ivas;
+        total.setText("$"+totals);
+
+        cbArticulo.setSelectedIndex(0);
+        cant33.setText("");
+    }//GEN-LAST:event_tabla1MouseClicked
+
+    private void cant33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cant33ActionPerformed
+        int pe=0,fil = tabla1.getRowCount();
+        for (int x=0;x<=fil-1;x++) {
+            String aux= (String) (tabla1.getValueAt(x,1));
+            if(aux.equals(cbArticulo.getSelectedItem()))
+            {
+
+                pe=1;
+            }
+        }
+        if(pe==1)
+        {
+            JOptionPane.showMessageDialog(null,"Este Articulo Ya Existe") ;
+        }else{
+            if (cbArticulo.getSelectedItem().equals("SELECCIONE ARTICULO"))
+            {
+                JOptionPane.showMessageDialog(null, "Falta elegir el articulo");
+            }else
+            {
+                if (cant33.getText().equals(""))
+                {
+                    JOptionPane.showMessageDialog(null, "Debe Digitar la Cantidad de articulo a Llevar");
+                    cant33.requestFocus();
+                }else
+                {
+
+                    try{
+                        Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
+                        Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
+                        Connection conn=(Connection) DriverManager.getConnection(url,login,password); // esta es la verificación de la conexión con mysql
+                        //Connection conn=(Connection) DriverManager.getConnection(url,usuario,contraseña); // esta es la verificación de la conexión con mysql
+                        Statement consulta=conn.createStatement(); // crea una variable que se encargue del código de sql
+                        //// hasta aquí es el mismo código del guardar///////
+                        ResultSet   res= consulta.executeQuery("select cantidad from articulo where cod_articulo = '"+codigoproducto+"'");
+                        while(res.next()){
+                            cant_ex=Integer.parseInt(res.getString(1));
+                            break;
+                        }
+                        res.close();
+                    } catch(ClassNotFoundException e){
+                        JOptionPane.showMessageDialog(null,"No hay conexion con Mysql") ;
+
+                    }catch(SQLException e){
+                        System.out.println(e);
+                        JOptionPane.showMessageDialog(null,"Error en el SQL") ;
+                    }
+
+                    if (cant_ex < Integer.parseInt(cant33.getText()))
+                    {
+                        JOptionPane.showMessageDialog(null, "No existe Cantidad Disponible de Dicho Articulo, La Cantidad Dispomible es: "+cant_ex);
+                        cant33.setText(""+cant_ex);
+                        cant33.requestFocus();
+                    }
+                    else
+                    {
+                        fila = tabla1.getRowCount();
+                        columna = tabla1.getColumnCount();
+                        //JOptionPane.showMessageDialog(null, fila+" "+columna);
+                        DefaultTableModel modelo=(DefaultTableModel)tabla1.getModel();
+                        modelo.addRow( new Object [] {null,null,null,null,null});
+                        tabla1.setValueAt(cant33.getText(),fila,0);
+                        tabla1.setValueAt(nomproducto,fila,1);
+
+                        try{
+                            Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
+                            Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
+                            Connection conn=(Connection) DriverManager.getConnection(url,login,password); // esta es la verificación de la conexión con mysql
+
+                            //Connection conn=(Connection) DriverManager.getConnection(url,usuario,contraseña); // esta es la verificación de la conexión con mysql
+                            Statement consulta=conn.createStatement(); // crea una variable que se encargue del código de sql
+
+                            ResultSet r= consulta.executeQuery("select valor from articulo where cod_articulo= '"+codigoproducto+"'");
+                            while(r.next()){
+
+                                precio=r.getString(1);
+                            }
+
+                        } catch(SQLException e){
+                            JOptionPane.showMessageDialog(null,"Este Articulo Ya Existeeeeeeeeeeeeee") ; // esto aparece cuando ya existe un código por lo cual no se guarda la info.
+                            //t2.setText("");
+
+                        } catch(ClassNotFoundException e){
+                            JOptionPane.showMessageDialog(null,"Error en la Base de Datos") ; // esto aparece cuando hay problemas con la conexión con mysql
+
+                        }
+
+                        tabla1.setValueAt(precio,fila,2);
+                        
+                        
+                        int fila2 = tabla1.getRowCount();
+                        subtotal=0;
+                        for (int x=0;x<=fila2-1;x++) {
+                            //String aux= (String) (tabla.getValueAt(x,1));
+                            int totalsub=Integer.parseInt((tabla1.getValueAt(x,2).toString()))*Integer.parseInt((tabla1.getValueAt(x,0).toString())); //a total sub le multiplico la cantidad por el precio de la fila
+                            subtotal=totalsub+subtotal;
+                            tabla1.setValueAt(totalsub,x,3);
+                            
+                        }
+                        
+                        sub.setText(""+subtotal);
+                        int ivas=(int) (subtotal * 0);
+                        iva.setText(""+ivas+"%");
+                        int totals=subtotal+ivas;
+                        total.setText(""+totals);
+
+                        cbArticulo.setSelectedIndex(0);
+                        cant33.setText("");
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_cant33ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -1282,12 +1626,12 @@ fec.setText(año+"/"+mes+"/"+dia);
     private javax.swing.JButton buscare;
     private javax.swing.JButton buscare1;
     private javax.swing.JButton buscare2;
-    private javax.swing.JTextField cant1;
+    private com.toedter.calendar.JDateChooser calendario;
+    private javax.swing.JTextField cant33;
     public static javax.swing.JComboBox cbArticulo;
     public static javax.swing.JComboBox cbCliente;
     public static javax.swing.JComboBox cbEmpleado;
     private javax.swing.JTextField fact;
-    private javax.swing.JTextField fec;
     public static javax.swing.JTextField iva;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="fnombres" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="24005f01-5d32-4fa6-a88d-22c3ecd5e363">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select  f.cod_cliente,
+f.cod_factura,
+f.cod_empleado,
+f.fecha,
+rf.Total,
+c.nombres,
+e.nombres as nombre
+
+from factura f
+inner join referencia_factura rf on f.cod_factura=rf.cod_factura
+inner join cliente c on f.cod_cliente=c.cod_cliente
+inner join empleado e on f.cod_empleado=e.cod_empleado
+
+where c.nombres  = "manuel" group by f.cod_factura]]>
+	</queryString>
+	<field name="cod_cliente" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_factura" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_empleado" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombre" class="java.lang.String"/>
+	<group name="cod_factura">
+		<groupExpression><![CDATA[$F{cod_factura}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="62" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="10" width="291" height="33" uuid="6fa6a471-b6a6-4bf6-817a-0ee324719f6f"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEM ELECTRONIK]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="36" y="45" width="250" height="14" uuid="e5653728-9a27-440f-91b1-92e239defc79"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[TEL 3146586462]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="45" y="32" width="250" height="21" uuid="e5653728-9a27-440f-91b1-92e239defc79"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[CLL PRINCIPAL 2 DE NOVIEMBRE]]></text>
+			</staticText>
+			<rectangle radius="10">
+				<reportElement x="319" y="4" width="207" height="55" backcolor="#FF6666" uuid="69a9877d-b4ee-42df-9b2a-426dba0d68f7"/>
+			</rectangle>
+			<line>
+				<reportElement x="321" y="33" width="205" height="1" uuid="ce9666c3-4e87-47ff-a79c-e4e02f842cba"/>
+			</line>
+			<staticText>
+				<reportElement x="359" y="10" width="122" height="21" uuid="e5653728-9a27-440f-91b1-92e239defc79"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[REPORTE ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="335" y="38" width="157" height="21" uuid="e5653728-9a27-440f-91b1-92e239defc79"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[DE TODOS LOS ARTICULOS]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="29" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="1" width="526" height="26" backcolor="#FF6666" uuid="a308e3a7-468f-40ac-9f07-144466c4e499"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="47" y="2" width="100" height="20" uuid="fdf1f3ed-9efb-46d7-851b-e2d2512d539a"/>
+				<text><![CDATA[cod_articulo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="185" y="2" width="100" height="20" uuid="13bbb8c2-ffc5-473a-82ad-067c4c7964d7"/>
+				<text><![CDATA[referencia]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="21" width="555" height="1" uuid="a96d4d7d-570f-4609-ad50-15e6f4cc766e"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="4" width="306" height="20" uuid="e27d8da4-d2ab-45f4-b89d-448a38b6850f"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Diseño:Manuel Alberto Romero Baldovino]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

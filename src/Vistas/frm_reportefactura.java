@@ -179,12 +179,12 @@ public void cerrar(){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }*/
         
-        enviar_cliente form= new enviar_cliente ();
+        enviar_clienteFactura form= new enviar_clienteFactura ();
         form.btnVerFactura.setVisible(true);
         form.enviar.setVisible(false);
         form.setVisible(true);
         form.toFront();
-        enviar_cliente.recibe.setText("1");
+        enviar_clienteFactura.recibe.setText("20");
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed

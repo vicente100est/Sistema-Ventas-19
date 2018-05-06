@@ -164,6 +164,11 @@ String bd ="ventas";
                 "N° FACTURA", "NOMBRE", "APELLIDO", "FECHA", "NOM EMP", "APELL EMP"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabla);
 
         jButton1.setText("Ver factura");
@@ -335,6 +340,29 @@ private void filtro2(String consulta, JTable jtableBuscar){
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        Connection miconexion = conexion.GetConnection();
+        Map parametros = new HashMap();
+
+        //parametros.put("nombre",JOptionPane.showInputDialog(null,"Ingrese Codigo del Cliente"));
+             Select=tabla.getSelectedRow();
+            String codigoFactura= tabla.getValueAt(Select,0).toString();
+            
+            parametros.put("codf",codigoFactura);
+        try {
+            
+            String reporte="factura.jasper";
+            JasperPrint informe =JasperFillManager.fillReport(reporte, parametros,miconexion);
+            JasperViewer ventanavisor=new JasperViewer(informe,false);
+            ventanavisor.setTitle("Reporte de Factura");
+            ventanavisor.setVisible(true); 
+            this.setVisible(false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+        }
+    }//GEN-LAST:event_tablaMouseClicked
 
     /**
      * @param args the command line arguments

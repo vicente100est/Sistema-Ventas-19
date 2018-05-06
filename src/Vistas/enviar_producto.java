@@ -14,6 +14,9 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 
@@ -348,6 +351,7 @@ private void filtro2(String consulta, JTable jtableBuscar){
         }else{
             JOptionPane.showMessageDialog(null,"No selecciono ninguna fila");
         }
+        
         if(txt_recibe.getText().equals("1")){
             Frm_facturap.cb3.setSelectedItem(referencia);
             this.setVisible(false);
@@ -359,9 +363,23 @@ private void filtro2(String consulta, JTable jtableBuscar){
                 if(txt_recibe.getText().equals("11")){
                     Frm_presupuesto.cb3.setSelectedItem(referencia);
                     this.setVisible(false);
+                }else{
+                if(txt_recibe.getText().equals("22")){
+                    Connection miconexion = conexion.GetConnection();
+
+                    try {
+
+                        String reporte="articulot.jasper";
+                        JasperPrint informe =JasperFillManager.fillReport(reporte,null,miconexion);
+                        JasperViewer ventanavisor=new JasperViewer(informe,false);
+                        ventanavisor.setTitle("Reporte articulo");
+                        ventanavisor.setVisible(true);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(this, e.getMessage());
+                    }
                 }
-            
             }
+        }
         }
     }//GEN-LAST:event_tablaMouseClicked
 

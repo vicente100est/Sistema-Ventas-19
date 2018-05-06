@@ -23,13 +23,13 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author EQUIPO
  */
-public class enviar_cliente extends javax.swing.JFrame {
+public class enviar_clienteFactura extends javax.swing.JFrame {
 int Select;
 String telefono,cedula,nombres,apellidos,direccion;
     /**
      * Creates new form enviar_cliente
      */
-    public enviar_cliente() {
+    public enviar_clienteFactura() {
         initComponents();
         setLocationRelativeTo(null);
         enviar.setVisible(false);
@@ -45,7 +45,8 @@ String telefono,cedula,nombres,apellidos,direccion;
             Class.forName("com.mysql.jdbc.Driver");
             Connection conn=(Connection) DriverManager.getConnection(url,login,password);
             Statement consulta=conn.createStatement();
-            ResultSet r= consulta.executeQuery("select * from  cliente order by nombres");
+            ResultSet r= consulta.executeQuery("select * from cliente c, factura f where c.cod_cliente=f.cod_cliente group by f.cod_cliente");
+            
             int i,j;
             i=0;
             j=0;
@@ -65,8 +66,8 @@ String telefono,cedula,nombres,apellidos,direccion;
             JOptionPane.showMessageDialog(null,"NO HAY CONEXION CON LA DB") ;
         } catch(ClassNotFoundException e){
             JOptionPane.showMessageDialog(null,"Error en la Base de Datos") ;
-        }     
-         
+        }
+       
     }
 
     /**
@@ -349,20 +350,21 @@ private void filtro2(String consulta, JTable jtableBuscar){
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(enviar_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(enviar_clienteFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(enviar_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(enviar_clienteFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(enviar_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(enviar_clienteFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(enviar_cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(enviar_clienteFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new enviar_cliente().setVisible(true);
+                new enviar_clienteFactura().setVisible(true);
             }
         });
     }
