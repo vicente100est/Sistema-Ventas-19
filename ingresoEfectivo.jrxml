@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="tarticulos" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="288d00ed-d10a-49e6-a8e4-8d49ce37747a">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codf" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+em.nombre as nombreempresa
+
+from empresa em
+
+where em.cod_empresa=$P{codf}]]>
+	</queryString>
+	<field name="nombreempresa" class="java.lang.String"/>
+	<group name="referencia">
+		<groupExpression><![CDATA[$F{referencia}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="71" uuid="a1ed3a05-c8c9-404a-9547-86c9d3831581"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="383" y="10" width="157" height="14" uuid="e5653728-9a27-440f-91b1-92e239defc79"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[INGRESO DE EFECTIVO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="383" y="23" width="157" height="1" uuid="ce9666c3-4e87-47ff-a79c-e4e02f842cba"/>
+			</line>
+			<staticText>
+				<reportElement x="383" y="26" width="51" height="13" uuid="e5653728-9a27-440f-91b1-92e239defc79"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[INGRESO N°:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="39" width="34" height="13" uuid="8cf0eddb-499e-4b02-bfa6-d158f9a9ee2f"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="52" width="50" height="13" uuid="12b2a17c-0ec8-4501-b212-996e64209e93"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[VENDEDOR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="26" width="46" height="13" uuid="bd7d3d04-b154-45af-a5c5-b48fa0f89459"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[COD CAJA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="12" y="16" width="354" height="36" uuid="22b0e45e-2159-4f00-9b03-04c07500967d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="17" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreempresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="513" y="26" width="42" height="13" uuid="c8311888-f467-4ae3-bc8b-3ede41c69a0e"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_caja}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="39" width="39" height="13" uuid="28b15185-53d7-4f93-83a8-f73a9d3c4b42"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="39" width="94" height="13" uuid="4ae413dc-80cf-47a6-ac7b-bd26e99bcc85"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="52" width="120" height="13" uuid="e4aaee61-02cc-4457-80f7-c6a7b129d9c7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="26" width="33" height="13" uuid="e846f1f4-ed60-4341-8ded-abbac8950dff"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{codf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="48" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="20" backcolor="#CCCCCC" uuid="8074e38c-75d2-4ad8-bcc5-aab08a1f5cc4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="1" y="0" width="428" height="20" uuid="c68be6b0-2c4c-4668-b401-6458b8af7f32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="0" width="124" height="20" uuid="c68be6b0-2c4c-4668-b401-6458b8af7f32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO INGRESADO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="429" y="0" width="1" height="20" uuid="131c61fe-57d5-4628-8f47-bc58bab4955c"/>
+			</line>
+			<textField>
+				<reportElement x="1" y="23" width="428" height="17" uuid="1f95c604-2ba1-4219-be67-039f61bc2d48"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{concepto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="23" width="124" height="17" uuid="7748b5e8-8da5-48c1-9ac2-c47c4708a241"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{signo_moneda}+" "+$F{monto_ingresado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

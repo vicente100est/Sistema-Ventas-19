@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d9526656-591b-4570-ae6e-61a6cf31d99b">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codf" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+em.nombre as nombreempresa,
+ie.cod_retiro,
+ie.cod_caja,
+FORMAT(ie.monto_retirado,2)as montoRetirado,
+ie.concepto,
+ie.vendedor,
+ie.fecha,
+ie.hora,
+e.nombres,
+e.apellidos,
+m.signo_moneda
+from empresa em, retiro_efectivo ie
+inner join empleado e on e.cod_empleado=ie.vendedor
+inner join monedas m on m.seleccion_moneda like 'SELECCIONADA'
+
+where ie.cod_retiro=$P{codf}]]>
+	</queryString>
+	<field name="nombreempresa" class="java.lang.String"/>
+	<field name="cod_retiro" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_caja" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="montoRetirado" class="java.lang.String"/>
+	<field name="concepto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vendedor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="signo_moneda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="71" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="71" uuid="212c7167-3b2d-40db-9ddb-46d7826082af"/>
+			</rectangle>
+			<textField>
+				<reportElement x="434" y="52" width="120" height="13" uuid="66e8cec5-45ea-4f57-8dea-4f8fda8f0d67"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="26" width="51" height="13" uuid="bd7177fb-c6c7-46d6-9696-a2c0fac61e1a"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[RETIRO N°:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="12" y="16" width="354" height="36" uuid="ccc3229f-d8c9-4093-9528-1afef6fbff7a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="17" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreempresa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="10" width="157" height="14" uuid="5bd993ae-029a-45c2-b121-0fe1016c66a9"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[RETIRO DE EFECTIVO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="513" y="26" width="42" height="13" uuid="1769ef55-e428-49c3-8294-c94fd2a462e7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_caja}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="39" width="34" height="13" uuid="cdf5349c-2784-4e02-8e62-bc13764a1605"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="383" y="23" width="157" height="1" uuid="3c0242e4-9449-45a4-b05c-a6bd968a85f3"/>
+			</line>
+			<textField>
+				<reportElement x="434" y="26" width="33" height="13" uuid="300235b2-7b31-4bdc-8d50-36c7d2be3fa7"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{codf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="52" width="50" height="13" uuid="710ce91d-7511-47c9-b5f7-cb381879fc87"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[VENDEDOR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="467" y="26" width="46" height="13" uuid="f247446e-2035-4386-895b-45aaaf7de8d1"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[COD CAJA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="417" y="39" width="39" height="13" uuid="0f461ca1-eeb8-4fc1-a7a6-3877cde180e6"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="39" width="94" height="13" uuid="733e9fdf-21e8-4fdc-99ac-5155d1d55f78"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="42" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="20" backcolor="#CCCCCC" uuid="e8b2abef-a663-4ea6-9fca-d5bf91456b53"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="429" y="0" width="125" height="20" uuid="72ad0f99-5ad6-4f9b-b23c-0514ecbf9182"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO RETIRADO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="428" y="0" width="1" height="20" uuid="4ef5687d-442b-4ec9-9862-56626a121d24"/>
+			</line>
+			<textField>
+				<reportElement x="428" y="23" width="126" height="17" uuid="f3e15a9b-1a82-4429-bb4b-2b1c296fcadf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{signo_moneda}+" "+$F{montoRetirado}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="23" width="428" height="17" uuid="178f3e2a-7b4f-4053-a0f8-34330d0663b0"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{concepto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="429" height="20" uuid="4baf264d-0f3e-4b70-a8d8-6897b1789bdf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["CONCEPTO"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

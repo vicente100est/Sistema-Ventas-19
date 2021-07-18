@@ -1,25 +1,19 @@
 
 package Vistas;
-
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-/**
- *
- * @author Manuel
- */
+
 public class conexion {
     
-     public static Connection GetConnection()
+     public static Connection ObtenerConexion()
     {
-        Connection conexion=null;
-      
+        Connection conexion=null;  
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            String servidor = "jdbc:mysql://localhost/ventas";
+            String servidor = "jdbc:mysql://localhost/ventas3";
             String usuarioDB="root";
             String passwordDB="";
             conexion= DriverManager.getConnection(servidor,usuarioDB,passwordDB);
@@ -43,9 +37,5 @@ public class conexion {
         {
             return conexion;
         }
-    }
-    
-    
-    
-    
+    }     
 }

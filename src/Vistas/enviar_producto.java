@@ -1,167 +1,136 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package Vistas;
+import java.awt.Color;
+import java.awt.Font;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
 import java.sql.*;
 import javax.swing.JOptionPane;
-import java.awt.event.KeyEvent;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
+import javax.swing.table.JTableHeader;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.view.JasperViewer;
 
 
-
-
-
-/**
- *
- * @author EQUIPO
- */
 public class enviar_producto extends javax.swing.JFrame {
-int Select;
-String codigo,referencia,cantidad,marca,valor;
-    /**
-     * Creates new form enviar_producto
-     */
+    int Select;
+    String codigo,referencia,cantidad,marca,valor,valorBruto;
+    String NOMBRE;
+    String orden="NOMBRE";
+    String forma="ASC";
+
     public enviar_producto() {
         initComponents();
+        
+        //icono del sistema
+        try{
+            setIconImage(new ImageIcon(getClass().getResource("/img/iconoSistema64.png")).getImage());
+        }catch(Exception e){
+            
+        }
+        txt_recibe.setVisible(false);
+         
         setLocationRelativeTo(null);
+        checkCodigo.setSelected(true);
+        txtBuscar.requestFocus();
         
+        enviarProducto.setVisible(false);
         
-        // cb1.setSelectedIndex(2);
-        
+        JTableHeader th; 
+        th = tabla.getTableHeader(); 
+        Font fuente = new Font("Calibri", Font.BOLD, 20); 
+        th.setFont(fuente); 
+        th.setBackground(new Color(93,116,163));
+        th.setForeground(new Color(255,255,255));
+  
         TableColumn  column = null;
         column = tabla.getColumnModel().getColumn(0);
         column.setPreferredWidth(60);
-        column = tabla.getColumnModel().getColumn(1);
-        column.setPreferredWidth(260);
+        
+        tabla.getColumnModel().getColumn(1).setMaxWidth(450);
+        tabla.getColumnModel().getColumn(1).setMinWidth(450);
+        tabla.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(450);
+        tabla.getTableHeader().getColumnModel().getColumn(1).setMaxWidth(450);
+        
+        tabla.getColumnModel().getColumn(3).setMaxWidth(80);
+        tabla.getColumnModel().getColumn(3).setMinWidth(80);
+        tabla.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(80);
+        tabla.getTableHeader().getColumnModel().getColumn(3).setMaxWidth(80);
+        
+        tabla.getColumnModel().getColumn(5).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(5).setMinWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(0);
+        tabla.getTableHeader().getColumnModel().getColumn(5).setMaxWidth(0);
+
         column = tabla.getColumnModel().getColumn(2);
         column.setPreferredWidth(100);
-        column = tabla.getColumnModel().getColumn(3);
+
+        column = tabla.getColumnModel().getColumn(4);
         column.setPreferredWidth(60);
-         column = tabla.getColumnModel().getColumn(4);
-        column.setPreferredWidth(60);
         
-         try{
-                            Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
-                            Class.forName("com.mysql.jdbc.Driver"); // este es el driver que copiaron y pegaron
-                            Connection conn=(Connection) DriverManager.getConnection(url,login,password); // esta es la verificación de la conexión con mysql
-
-                            //Connection conn=(Connection) DriverManager.getConnection(url,usuario,contraseña); // esta es la verificación de la conexión con mysql
-                            Statement consulta=conn.createStatement(); // crea una variable que se encargue del código de sql
-
-
-                            ResultSet r= consulta.executeQuery("select * from articulo order by referencia");
-                            int i,j;
-                            i=0;
-                            j=0;
-                            //jTable1.getModel().
-                            DefaultTableModel modelo=(DefaultTableModel)tabla.getModel();
-                            tabla.setRowSorter(new TableRowSorter(modelo));
-                            //   for(j=0;j<modelo.getRowCount();j++){
-                            //     modelo.removeRow(0);
-                            /// }
-                            modelo.setNumRows(0);
-                            while(r.next()){
-                                modelo.addRow( new Object [] {null,null,null,null,null});
-                                tabla.setValueAt(r.getString(1),i,0);
-                                tabla.setValueAt(r.getString(2),i,1);
-                                tabla.setValueAt(r.getString(3),i,2);
-                                tabla.setValueAt(r.getString(4),i,3);
-                                tabla.setValueAt(r.getString(5),i,4);
-                                //    tabla.setValueAt(r.getString(3),i,2);
-                                i++;
-                            }
-                        } catch(SQLException e){
-                            JOptionPane.showMessageDialog(null,"Este articulo Ya Existe") ; // esto aparece cuando ya existe un código por lo cual no se guarda la info.
-                            //t2.setText("");
-
-
-                        } catch(ClassNotFoundException e){
-                            JOptionPane.showMessageDialog(null,"Error en la Base de Datos") ; // esto aparece cuando hay problemas con la conexión con mysql
-
-                        }
-
-                        Render r= new Render(2);
-                         tabla.setDefaultRenderer(Object.class,r);
-        
-        
-
+        try{
+            Connection conn= conexion.ObtenerConexion(); // esta es la verificación de la conexión con mysql
+            Statement consulta=conn.createStatement(); // crea una variable que se encargue del código de sql
+            
+            ResultSet r= consulta.executeQuery("select cod_articulo,referencia,marca,cantidad,total_con_iva,valor_bruto from articulo where estado='ACTIVO' and categoria='Articulos' order by referencia");
+            int i;
+            i=0;
+            DefaultTableModel modelo=(DefaultTableModel)tabla.getModel();
+            tabla.setRowSorter(new TableRowSorter(modelo));
+            modelo.setNumRows(0);
+            while(r.next()){
+                modelo.addRow( new Object [] {null,null,null,null,null,null});
+                tabla.setValueAt(r.getString(1),i,0);
+                tabla.setValueAt(r.getString(2),i,1);
+                tabla.setValueAt(r.getString(3),i,2);
+                tabla.setValueAt(r.getString(4),i,3);
+                tabla.setValueAt(r.getString(5),i,4);
+                tabla.setValueAt(r.getString(6),i,5);
+                i++;
+            }
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Este articulo Ya Existe") ; // esto aparece cuando ya existe un código por lo cual no se guarda la info.
+        }
+        Render_Color_Articulos r= new Render_Color_Articulos(3);
+        tabla.setDefaultRenderer(Object.class,r);
     }
-  String bd ="ventas";
-             String NOMBRE;
-             String login = "root";
-             String password = "";
-             String url = "jdbc:mysql://localhost/"+bd; // esta es la conexion
-             String orden="NOMBRE";
-             String forma="ASC";
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         FiltrarResultados = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        sp1 = new javax.swing.JScrollPane();
+        txtBuscar = new javax.swing.JTextField();
+        checkMarca = new javax.swing.JRadioButton();
+        checkDescripcion = new javax.swing.JRadioButton();
+        checkCodigo = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
         tabla = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         enviarProducto = new javax.swing.JButton();
         txt_recibe = new javax.swing.JTextField();
-        txtBuscar = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
-        checkMarca = new javax.swing.JRadioButton();
-        checkReferencia = new javax.swing.JRadioButton();
-        checkCodigo = new javax.swing.JRadioButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        sp1.setBackground(new java.awt.Color(102, 204, 255));
-        sp1.setBorder(null);
-        sp1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-
-        tabla.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "C O D I G O", "R E F E R E N C I A", "C A N T I D A D", "M A R C A", "V A L O R"
-            }
-        ));
-        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tablaMouseClicked(evt);
-            }
-        });
-        sp1.setViewportView(tabla);
-
-        enviarProducto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        enviarProducto.setText("ENVIAR");
-        enviarProducto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviarProductoActionPerformed(evt);
-            }
-        });
-
+        txtBuscar.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        txtBuscar.setBorder(null);
         txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtBuscarKeyReleased(evt);
@@ -170,107 +139,125 @@ String codigo,referencia,cantidad,marca,valor;
                 txtBuscarKeyTyped(evt);
             }
         });
-
-        jLabel1.setFont(new java.awt.Font("Cambria", 1, 30)); // NOI18N
-        jLabel1.setText("ARTICULOS");
-
-        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/articulo.png"))); // NOI18N
-
-        javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
-        panelImage1.setLayout(panelImage1Layout);
-        panelImage1Layout.setHorizontalGroup(
-            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 60, Short.MAX_VALUE)
-        );
-        panelImage1Layout.setVerticalGroup(
-            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 50, Short.MAX_VALUE)
-        );
+        jPanel1.add(txtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 310, 50));
 
         FiltrarResultados.add(checkMarca);
         checkMarca.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         checkMarca.setText("Marca");
         checkMarca.setOpaque(false);
+        jPanel1.add(checkMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, -1, -1));
 
-        FiltrarResultados.add(checkReferencia);
-        checkReferencia.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        checkReferencia.setText("Referencia");
-        checkReferencia.setOpaque(false);
+        FiltrarResultados.add(checkDescripcion);
+        checkDescripcion.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        checkDescripcion.setText("Descripción");
+        checkDescripcion.setOpaque(false);
+        jPanel1.add(checkDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 10, -1, -1));
 
         FiltrarResultados.add(checkCodigo);
         checkCodigo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         checkCodigo.setText("Codigo");
         checkCodigo.setOpaque(false);
+        jPanel1.add(checkCodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(checkCodigo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkReferencia)
-                        .addGap(18, 18, 18)
-                        .addComponent(checkMarca))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(sp1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txt_recibe, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(enviarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(31, 31, 31))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(24, 24, 24)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(checkMarca)
-                                    .addComponent(checkReferencia)
-                                    .addComponent(checkCodigo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(panelImage1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
-                .addComponent(sp1, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enviarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_recibe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(213, 213, 213))
-        );
+        tabla.setFont(new java.awt.Font("Tahoma", 0, 22)); // NOI18N
+        tabla.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "CODIGO", "DESCRIPCION", "MARCA", "STOCK", "VALOR VENTA", "VALOR COSTO"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla.setRowHeight(25);
+        tabla.setRowMargin(4);
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
+        tabla.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tablaKeyPressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tabla);
+        if (tabla.getColumnModel().getColumnCount() > 0) {
+            tabla.getColumnModel().getColumn(0).setResizable(false);
+            tabla.getColumnModel().getColumn(1).setResizable(false);
+            tabla.getColumnModel().getColumn(2).setResizable(false);
+            tabla.getColumnModel().getColumn(3).setResizable(false);
+            tabla.getColumnModel().getColumn(4).setResizable(false);
+            tabla.getColumnModel().getColumn(5).setResizable(false);
+        }
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 990, 510));
+
+        jLabel9.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        jLabel9.setText("ARTICULOS");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 40, -1, 60));
+
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconoArticulosXs-01.png"))); // NOI18N
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 30, 50, 70));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/botonBuscar.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 320, 20));
+
+        enviarProducto.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        enviarProducto.setText("ENVIAR");
+        enviarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarProductoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(enviarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 630, 87, 33));
+        jPanel1.add(txt_recibe, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 630, 44, -1));
+
+        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu1.setText("File");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItem1.setText("Cerrar ventana");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1032, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -280,32 +267,27 @@ String codigo,referencia,cantidad,marca,valor;
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBuscarKeyTyped
 
-     DefaultTableModel dm;
+     
+    DefaultTableModel dm;
+    /* Método filtro*/
+    private void filtro2(String consulta, JTable jtableBuscar){
+        dm = (DefaultTableModel) jtableBuscar.getModel();
+        TableRowSorter<DefaultTableModel> tr = new TableRowSorter(dm);
+        jtableBuscar.setRowSorter(tr);
 
-/* Método filtro*/
-private void filtro2(String consulta, JTable jtableBuscar){
-    
-    
-    
-    dm = (DefaultTableModel) jtableBuscar.getModel();
-    TableRowSorter<DefaultTableModel> tr = new TableRowSorter(dm);
-    jtableBuscar.setRowSorter(tr);
-    
-    int columna=0;
-    // Identificamos cual es el JRadioButton seleccionado para filtrar el
-    // resultado de acuerdo a los datos de la columna elegida
-    if (checkCodigo.isSelected()) {
-        columna = 0;
-    } 
-    if (checkReferencia.isSelected()) {
-         columna = 1;
+        int columna=0;
+        // Identificamos cual es el JRadioButton seleccionado para filtrar el
+        // resultado de acuerdo a los datos de la columna elegida
+        if (checkCodigo.isSelected()) {
+            columna = 0;
+        }else  if (checkDescripcion.isSelected()) {
+                    columna = 1;
+                }else if (checkMarca.isSelected()) {
+                            columna = 2;
+                       }
+        tr.setRowFilter(RowFilter.regexFilter(consulta, columna));
     }
-    if (checkMarca.isSelected()) {
-        columna = 3;
-    }
-
-    tr.setRowFilter(RowFilter.regexFilter(consulta, columna));
-}
+    
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
         if (FiltrarResultados.getSelection()==null) {
             // Si ninguno de los JRadioButtons está seleccionado, evitamos que se
@@ -321,77 +303,292 @@ private void filtro2(String consulta, JTable jtableBuscar){
 
     private void enviarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarProductoActionPerformed
         if(txt_recibe.getText().equals("1")){
-            Frm_facturap.cb3.setSelectedItem(referencia);
-            Frm_facturap.cb3.setSelectedItem(referencia);
+            Factura_Venta.comboArticulo.setSelectedItem(referencia);
+            Factura_Venta.comboArticulo.setSelectedItem(referencia);
             this.setVisible(false);
         }
         if(txt_recibe.getText().equals("2")){
-            Frm_Articulo.txtCodigo.setText(codigo);
-            Frm_Articulo.txtCantidad.setText(cantidad);
-            Frm_Articulo.txtProducto.setText(referencia);
-            Frm_Articulo.txtPrecioNeto.setText(marca);
-            Frm_Articulo.txtMarca.setText(valor);
+            Registrar_Articulos.txtCodigo.setText(codigo);
+            Registrar_Articulos.txtCantidad.setText(cantidad);
+            Registrar_Articulos.txtProducto.setText(referencia);
+            Registrar_Articulos.txtPrecioVentaSinIva.setText(marca);
             this.setVisible(false);
         }
     }//GEN-LAST:event_enviarProductoActionPerformed
 
-    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+    private void tablaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tablaKeyPressed
         int fila= tabla.getSelectedRow();
-         
-        //this.setVisible(false);
+
         if(fila>=0){
             Select=tabla.getSelectedRow();
             codigo= tabla.getValueAt(Select,0).toString();
             referencia= tabla.getValueAt(Select,1).toString();
             cantidad= tabla.getValueAt(Select,2).toString();
-            marca= tabla.getValueAt(Select,3).toString();
-            valor= tabla.getValueAt(Select,4).toString();
-            //Frm_facturap.cb3.setSelectedItem(referencia);
-           
+            valor= tabla.getValueAt(Select,4).toString();        
         }else{
             JOptionPane.showMessageDialog(null,"No selecciono ninguna fila");
         }
         
         if(txt_recibe.getText().equals("1")){
-            Frm_facturap.cb3.setSelectedItem(referencia);
+            Factura_Venta.comboArticulo.setSelectedItem(referencia);
+            Factura_Venta.txtCodigoArticulo1.setText(codigo);
             this.setVisible(false);
         }else{
             if(txt_recibe.getText().equals("10")){
-                frm_remito.cbArticulo.setSelectedItem(referencia);
+                Factura_Remito.comboArticulos.setSelectedItem(referencia);
+                Factura_Remito.txtCodigo_Articulo.setText(codigo);
                 this.setVisible(false);
             }else{
                 if(txt_recibe.getText().equals("11")){
-                    Frm_presupuesto.cb3.setSelectedItem(referencia);
+                    Factura_Presupuesto.comboArticulos.setSelectedItem(referencia);
+                    Factura_Presupuesto.txtCodigoArticulo.setText(codigo);
                     this.setVisible(false);
                 }else{
-                if(txt_recibe.getText().equals("22")){
-                    Connection miconexion = conexion.GetConnection();
+                    if(txt_recibe.getText().equals("2")){
+                        Factura_Compra.comboArticulos.setSelectedItem(referencia);
+                        Factura_Compra.txtCodigoArticulo1.setText(codigo);
+                        this.setVisible(false);
+                    }else{
+                        if(txt_recibe.getText().equals("22")){
+                            Map parametros = new HashMap();
 
-                    try {
+                            Select=tabla.getSelectedRow();
+                            String codigoArticulo= tabla.getValueAt(Select,0).toString();
 
-                        String reporte="articulot.jasper";
-                        JasperPrint informe =JasperFillManager.fillReport(reporte,null,miconexion);
-                        JasperViewer ventanavisor=new JasperViewer(informe,false);
-                        ventanavisor.setTitle("Reporte articulo");
-                        ventanavisor.setVisible(true);
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(this, e.getMessage());
+                            parametros.put("codigo",codigoArticulo);
+                            Connection miconexion = conexion.ObtenerConexion();
+
+                            try {
+                                String reporte="sarticulo.jasper";
+                                JasperPrint informe =JasperFillManager.fillReport(reporte,parametros,miconexion);
+                                JasperViewer ventanavisor=new JasperViewer(informe,false);
+                                ventanavisor.setTitle("Reporte articulo");
+                                ventanavisor.setVisible(true);
+                            } catch (Exception e) {
+                                JOptionPane.showMessageDialog(this, e.getMessage());
+                            }
+                        }
                     }
                 }
             }
         }
+    }//GEN-LAST:event_tablaKeyPressed
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        int fila= tabla.getSelectedRow();
+        String valorCosto="";
+        if(fila>=0){
+            Select=tabla.getSelectedRow();
+            codigo= tabla.getValueAt(Select,0).toString();
+            referencia= tabla.getValueAt(Select,1).toString();
+            cantidad= tabla.getValueAt(Select,2).toString();
+            valor= tabla.getValueAt(Select,4).toString(); 
+        }else{
+            JOptionPane.showMessageDialog(null,"No selecciono ninguna fila");
+        }
+        
+        if(txt_recibe.getText().equals("1")){
+            Factura_Venta.comboArticulo.setSelectedItem(referencia);
+            Factura_Venta.txtCodigoArticulo1.setText(codigo);
+            this.setVisible(false);
+        }else{ if(txt_recibe.getText().equals("2")){
+                Factura_Compra.comboArticulos.setSelectedItem(referencia);
+                Factura_Compra.txtCodigoArticulo1.setText(codigo);
+                this.setVisible(false);
+            }else{
+                if(txt_recibe.getText().equals("10")){
+                    Factura_Remito.comboArticulos.setSelectedItem(referencia);
+                    Factura_Remito.txtCodigo_Articulo.setText(codigo);
+                    this.setVisible(false);
+                }else{
+                    if(txt_recibe.getText().equals("11")){
+                        Factura_Nota_Credito_Compra.comboArticulo.setSelectedItem(referencia);
+                        Factura_Nota_Credito_Compra.txtCodigoArticulo.setText(codigo);
+                        this.setVisible(false);
+                    }else{ if(txt_recibe.getText().equals("12")){
+                            Factura_Nota_Credito_Venta.comboArticulo.setSelectedItem(referencia);
+                            Factura_Nota_Credito_Venta.txtCodigoArticulo.setText(codigo);
+                            this.setVisible(false);
+                        }else{
+                            if(txt_recibe.getText().equals("13")){
+                                Factura_Presupuesto.comboArticulos.setSelectedItem(referencia);
+                                Factura_Presupuesto.txtCodigoArticulo.setText(codigo);
+                                this.setVisible(false);
+                            }else{
+                                    if(txt_recibe.getText().equals("22")){               
+                                        Map parametros = new HashMap();
+                                        Select=tabla.getSelectedRow();
+                                        String codigoArticulo= tabla.getValueAt(Select,0).toString();
+
+                                        parametros.put("codigo",codigoArticulo);
+                                        Connection miconexion = conexion.ObtenerConexion();
+
+                                        try{
+                                            String reporte="sarticulo.jasper";
+                                            JasperPrint informe =JasperFillManager.fillReport(reporte,parametros,miconexion);
+                                            JasperViewer ventanavisor=new JasperViewer(informe,false);
+                                            ventanavisor.setTitle("Reporte articulo");
+                                            ventanavisor.setVisible(true);
+                                        }catch (Exception e) {
+                                            JOptionPane.showMessageDialog(this, e.getMessage());
+                                        }
+                                    }else{
+                                        if(txt_recibe.getText().equals("22")){               
+                                        Map parametros = new HashMap();
+                                        Select=tabla.getSelectedRow();
+                                        String codigoArticulo= tabla.getValueAt(Select,0).toString();
+
+                                        parametros.put("codigo",codigoArticulo);
+                                        Connection miconexion = conexion.ObtenerConexion();
+
+                                        try{
+                                            String reporte="sarticulo.jasper";
+                                            JasperPrint informe =JasperFillManager.fillReport(reporte,parametros,miconexion);
+                                            JasperViewer ventanavisor=new JasperViewer(informe,false);
+                                            ventanavisor.setTitle("Reporte articulo");
+                                            ventanavisor.setVisible(true);
+                                        }catch (Exception e) {
+                                            JOptionPane.showMessageDialog(this, e.getMessage());
+                                        }
+                                    }else{
+
+                                        if(txt_recibe.getText().equals("24")){               
+                                            Map parametros = new HashMap();
+                                            Select=tabla.getSelectedRow();
+                                            String codigoArticulo= tabla.getValueAt(Select,0).toString();
+
+                                            parametros.put("codigo",codigoArticulo);
+                                            Connection miconexion = conexion.ObtenerConexion();
+
+                                            try{
+                                                String reporte="codigoBarrasIndividual.jasper";
+                                                JasperPrint informe =JasperFillManager.fillReport(reporte,parametros,miconexion);
+                                                JasperViewer ventanavisor=new JasperViewer(informe,false);
+                                                ventanavisor.setTitle("Reporte de codigo de barras individual TANDA DE 1");
+                                                ventanavisor.setVisible(true);
+                                            }catch (Exception e) {
+                                                JOptionPane.showMessageDialog(this, e.getMessage());
+                                            }
+                                        }else{
+
+                                            if(txt_recibe.getText().equals("25")){               
+                                                Map parametros = new HashMap();
+                                                Select=tabla.getSelectedRow();
+                                                String codigoArticulo= tabla.getValueAt(Select,0).toString();
+
+                                                parametros.put("codigo",codigoArticulo);
+                                                Connection miconexion = conexion.ObtenerConexion();
+
+                                                try{
+                                                    String reporte="codigoBarrasX2Individual.jasper";
+                                                    JasperPrint informe =JasperFillManager.fillReport(reporte,parametros,miconexion);
+                                                    JasperViewer ventanavisor=new JasperViewer(informe,false);
+                                                    ventanavisor.setTitle("Reporte de codigo de barras individual TANDA DE 2");
+                                                    ventanavisor.setVisible(true);
+                                                }catch (Exception e) {
+                                                    JOptionPane.showMessageDialog(this, e.getMessage());
+                                                }
+                                            }else{
+
+                                                if(txt_recibe.getText().equals("26")){               
+                                                    Map parametros = new HashMap();
+                                                    Select=tabla.getSelectedRow();
+                                                    String codigoArticulo= tabla.getValueAt(Select,0).toString();
+
+                                                    parametros.put("codigo",codigoArticulo);
+                                                    Connection miconexion = conexion.ObtenerConexion();
+
+                                                    try{
+                                                        String reporte="codigoBarrasX4Individual.jasper";
+                                                        JasperPrint informe =JasperFillManager.fillReport(reporte,parametros,miconexion);
+                                                        JasperViewer ventanavisor=new JasperViewer(informe,false);
+                                                        ventanavisor.setTitle("Reporte de codigo de barras individual TANDA DE 4");
+                                                        ventanavisor.setVisible(true);
+                                                    }catch (Exception e) {
+                                                        JOptionPane.showMessageDialog(this, e.getMessage());
+                                                    }
+                                                }else{
+
+                                                    if(txt_recibe.getText().equals("27")){               
+                                                        Map parametros = new HashMap();
+                                                        Select=tabla.getSelectedRow();
+                                                        String codigoArticulo= tabla.getValueAt(Select,0).toString();
+
+                                                        parametros.put("codigo",codigoArticulo);
+                                                        Connection miconexion = conexion.ObtenerConexion();
+
+                                                        try{
+                                                            String reporte="codigoBarrasX8Individual.jasper";
+                                                            JasperPrint informe =JasperFillManager.fillReport(reporte,parametros,miconexion);
+                                                            JasperViewer ventanavisor=new JasperViewer(informe,false);
+                                                            ventanavisor.setTitle("Reporte de codigo de barras individual TANDA DE 8");
+                                                            ventanavisor.setVisible(true);
+                                                        }catch (Exception e) {
+                                                            JOptionPane.showMessageDialog(this, e.getMessage());
+                                                        }
+                                                    }else{
+
+                                                        if(txt_recibe.getText().equals("28")){               
+                                                            Map parametros = new HashMap();
+                                                            Select=tabla.getSelectedRow();
+                                                            String codigoArticulo= tabla.getValueAt(Select,0).toString();
+
+                                                            parametros.put("codigo",codigoArticulo);
+                                                            Connection miconexion = conexion.ObtenerConexion();
+
+                                                            try{
+                                                                String reporte="codigoBarrasX12Individual.jasper";
+                                                                JasperPrint informe =JasperFillManager.fillReport(reporte,parametros,miconexion);
+                                                                JasperViewer ventanavisor=new JasperViewer(informe,false);
+                                                                ventanavisor.setTitle("Reporte de codigo de barras individual TANDA DE 12");
+                                                                ventanavisor.setVisible(true);
+                                                            }catch (Exception e) {
+                                                                JOptionPane.showMessageDialog(this, e.getMessage());
+                                                            }
+                                                        }else{
+
+                                                            if(txt_recibe.getText().equals("29")){               
+                                                                Map parametros = new HashMap();
+                                                                Select=tabla.getSelectedRow();
+                                                                String codigoArticulo= tabla.getValueAt(Select,0).toString();
+
+                                                                parametros.put("codigo",codigoArticulo);
+                                                                Connection miconexion = conexion.ObtenerConexion();
+
+                                                                try{
+                                                                    String reporte="codigoBarrasX16Individual.jasper";
+                                                                    JasperPrint informe =JasperFillManager.fillReport(reporte,parametros,miconexion);
+                                                                    JasperViewer ventanavisor=new JasperViewer(informe,false);
+                                                                    ventanavisor.setTitle("Reporte de codigo de barras individual TANDA DE 16");
+                                                                    ventanavisor.setVisible(true);
+                                                                }catch (Exception e) {
+                                                                    JOptionPane.showMessageDialog(this, e.getMessage());
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_tablaMouseClicked
 
-    
-    
-   
-    
-    
-    
-    
-    
-    
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        
+    }//GEN-LAST:event_jMenu1ActionPerformed
+ 
     /**
      * @param args the command line arguments
      */
@@ -430,13 +627,18 @@ private void filtro2(String consulta, JTable jtableBuscar){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup FiltrarResultados;
     private javax.swing.JRadioButton checkCodigo;
+    private javax.swing.JRadioButton checkDescripcion;
     private javax.swing.JRadioButton checkMarca;
-    private javax.swing.JRadioButton checkReferencia;
     public static javax.swing.JButton enviarProducto;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
-    private org.edisoncor.gui.panel.PanelImage panelImage1;
-    private javax.swing.JScrollPane sp1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tabla;
     private javax.swing.JTextField txtBuscar;
     public static javax.swing.JTextField txt_recibe;

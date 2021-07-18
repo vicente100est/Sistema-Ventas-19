@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reportecliente" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3be9ddaa-0337-42e0-a5f4-40aa336f1d60">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="totalSaldo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+  em.nombre as nombreempresa,
+  c.nombre_firma as nombres,
+  c.cod_proveedor,
+  cc.cod_cuenta,
+  FORMAT(cc.ultimo_pago,2 )as ultimoPago,
+  cc.fecha_ultimo_pago,
+  FORMAT(cc.saldo_restante,2 )as saldoRestante,
+  m.signo_moneda
+
+FROM proveedor c, empresa em,cuenta_credito_compra cc 
+inner join monedas m on m.seleccion_moneda like 'SELECCIONADA'
+
+WHERE c.estado='ACTIVO' AND cc.cod_proveedor=c.cod_proveedor AND c.cod_proveedor>0 ORDER BY cc.fecha_ultimo_pago;]]>
+	</queryString>
+	<field name="nombreempresa" class="java.lang.String"/>
+	<field name="nombres" class="java.lang.String"/>
+	<field name="cod_proveedor" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_cuenta" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ultimoPago" class="java.lang.String"/>
+	<field name="fecha_ultimo_pago" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="saldoRestante" class="java.lang.String"/>
+	<field name="signo_moneda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<group name="nombres">
+		<groupExpression><![CDATA[]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="66" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="66" uuid="3faeef5e-d066-499b-83af-999788df8336"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="393" y="34" width="152" height="19" uuid="e5653728-9a27-440f-91b1-92e239defc79"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[TODOS LOS PROVEEDORES]]></text>
+			</staticText>
+			<line>
+				<reportElement x="404" y="33" width="131" height="1" uuid="ce9666c3-4e87-47ff-a79c-e4e02f842cba"/>
+			</line>
+			<staticText>
+				<reportElement x="404" y="13" width="131" height="21" uuid="e5653728-9a27-440f-91b1-92e239defc79"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[CUENTAS A CREDITO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="13" width="393" height="40" uuid="ee924994-cadf-4793-8f31-274f0c1bbedf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreempresa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" backcolor="#CCCCCC" uuid="3c1e8f76-d658-433b-8375-9f0ad3c8b025"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="76" y="0" width="185" height="20" uuid="c68be6b0-2c4c-4668-b401-6458b8af7f32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVEEDOR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="0" width="106" height="20" uuid="c68be6b0-2c4c-4668-b401-6458b8af7f32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA ULTIMO PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="75" height="20" uuid="c68be6b0-2c4c-4668-b401-6458b8af7f32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° CUENTA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="75" y="0" width="1" height="20" uuid="bdbb5aa4-1499-4a40-ad6f-784de2bad431"/>
+			</line>
+			<line>
+				<reportElement x="459" y="0" width="1" height="20" uuid="af18ac2d-5dcf-4c6c-b40c-f69a427d6d83"/>
+			</line>
+			<line>
+				<reportElement x="352" y="0" width="1" height="20" uuid="a2635b31-2e03-4d2e-9773-3b5503766317"/>
+			</line>
+			<staticText>
+				<reportElement x="460" y="0" width="95" height="20" uuid="bb4be6e4-3eee-4879-a311-e175047c41a6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SALDO RESTANTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="261" y="0" width="1" height="20" uuid="45463983-8843-4501-9008-2ecb9ad07992"/>
+			</line>
+			<staticText>
+				<reportElement x="262" y="0" width="90" height="20" uuid="d6220bdc-128d-4e9e-9efa-38c9c52920a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ULTIMO PAGO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="-1" y="0" width="76" height="14" uuid="3db322e5-1ab1-449f-8e91-3d9a1c26d138"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{cod_cuenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="0" width="186" height="14" uuid="04e7da56-4f81-4da7-a8ce-8d47927adc30"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="352" y="0" width="107" height="15" uuid="8a6c49a1-82bd-4dab-a86d-d68dcf746335"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{fecha_ultimo_pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="261" y="0" width="92" height="15" uuid="a5d383c5-ea1c-4fdd-b52a-d2e58342670e"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{signo_moneda}+""+$F{ultimoPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="95" height="15" uuid="e4afd8bb-658b-4fb0-8237-0f7da271ee87"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{signo_moneda}+""+$F{saldoRestante}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="18" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="18" uuid="aa0e8bb0-d14d-4ec6-ac97-d0155d73a3be"/>
+			</rectangle>
+			<textField>
+				<reportElement x="300" y="0" width="235" height="18" uuid="6ae9e74f-0610-4865-ad39-486e2296d102"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["TOTAL: "+$F{signo_moneda}+""+$P{totalSaldo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="141" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b584ee24-b092-40a4-8256-c473d3c6a087">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="5"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codf" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+em.nombre as nombreempresa,
+ie.cod_ingreso,
+ie.cod_caja,
+FORMAT(ie.monto_ingresado,2)as montoIngresado,
+ie.concepto,
+ie.vendedor,
+ie.fecha,
+ie.hora,
+e.nombres,
+e.apellidos,
+m.signo_moneda
+from empresa em, ingreso_efectivo ie
+inner join empleado e on e.cod_empleado=ie.vendedor
+inner join monedas m on m.seleccion_moneda like 'SELECCIONADA'
+
+where ie.cod_ingreso=$P{codf}]]>
+	</queryString>
+	<field name="nombreempresa" class="java.lang.String"/>
+	<field name="cod_ingreso" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cod_caja" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="montoIngresado" class="java.lang.String"/>
+	<field name="concepto" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="vendedor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hora" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="signo_moneda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="71" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="71" uuid="d5f24bc9-a7a2-4d74-9495-3d678000cc36"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="383" y="39" width="34" height="13" uuid="4f5d7043-587c-45a0-868c-e19dd00ef448"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="434" y="52" width="120" height="13" uuid="36ab08bc-3440-4c92-b951-9e9e2f3d6637"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}+" "+$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="10" width="157" height="14" uuid="e84de14d-fcfb-407f-abea-ae200750d88a"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[INGRESO DE EFECTIVO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="383" y="23" width="157" height="1" uuid="39dad807-5e0a-4a61-8db0-a826bafc8ed7"/>
+			</line>
+			<textField>
+				<reportElement x="434" y="26" width="33" height="13" uuid="dd946951-2124-4ec9-ac5f-110344997db5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{codf}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="26" width="51" height="13" uuid="3b82b42b-2df8-495e-a006-6fbfb3924e69"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[INGRESO N°:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="460" y="39" width="94" height="13" uuid="99558422-20a7-4f87-b23a-e6a8a1da9b36"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hora}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="417" y="39" width="39" height="13" uuid="1cb00f8c-a3b7-4346-a4ad-9c31510067b0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="52" width="50" height="13" uuid="b24240f5-66f6-41c5-aeb7-804ea94c72e6"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[VENDEDOR:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="12" y="16" width="354" height="36" uuid="76c7d420-db11-49b2-8a87-1f11d20b846b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="17" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombreempresa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="513" y="26" width="42" height="13" uuid="6aa931ad-6079-4244-8587-1661415b41fb"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cod_caja}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="467" y="26" width="46" height="13" uuid="d495a7d4-f289-4c40-a740-466f2004cf19"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[COD CAJA:]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="554" height="20" backcolor="#CCCCCC" uuid="329bf5ed-4820-4eb1-be89-895d2210ba37"/>
+			</rectangle>
+			<line>
+				<reportElement x="428" y="0" width="1" height="20" uuid="0d9a8e82-d45a-45c6-a639-340a5bcaea44"/>
+			</line>
+			<textField>
+				<reportElement x="0" y="23" width="428" height="17" uuid="695fb3dc-f017-45fe-8f86-aef9825dab69"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{concepto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="23" width="125" height="17" uuid="cacf34a5-0a5d-4ee9-9066-02c79d1ec35b"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{signo_moneda}+" "+$F{montoIngresado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="429" height="20" uuid="0a9e9877-c502-4cac-866e-9d64b6e9a289"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONCEPTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="0" width="125" height="20" uuid="a2116d01-3023-4e96-9ecc-558c60f8cb2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO INGRESADO]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

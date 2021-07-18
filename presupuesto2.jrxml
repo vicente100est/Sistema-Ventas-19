@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4d31971d-ef2c-4155-b57e-0eb4ee5d705e">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codart" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select 
+em.nombre as nombreempresa,
+em.localidad as localidadempresa,
+em.cuit as cuitempresa,
+em.direccion as direcionempresa,
+em.telefono as telefonoempresa,
+em.correo as correoempresa,
+em.tipo as condicionempresa,
+p.cod_presupuesto,
+p.fecha,
+rp.referencia,
+rp.cantidad,
+rp.valor_unitario,
+rp.valor_total,
+rp.Total,
+m.signo_moneda
+from empresa em, presupuesto p
+inner join monedas m on m.seleccion_moneda like 'SELECCIONADA'
+inner join referencia_presupuesto rp on p.cod_presupuesto=rp.cod_presupuesto
+where p.cod_presupuesto=$P{codart}]]>
+	</queryString>
+	<field name="nombreempresa" class="java.lang.String"/>
+	<field name="localidadempresa" class="java.lang.String"/>
+	<field name="cuitempresa" class="java.lang.String"/>
+	<field name="direcionempresa" class="java.lang.String"/>
+	<field name="telefonoempresa" class="java.lang.String"/>
+	<field name="correoempresa" class="java.lang.String"/>
+	<field name="condicionempresa" class="java.lang.String"/>
+	<field name="cod_presupuesto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="fecha" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="referencia" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valor_unitario" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="valor_total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="signo_moneda" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="107" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="106" uuid="16197f59-2da7-489d-848e-534a0ca96db8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="67" width="54" height="20" uuid="8c5abe05-5282-4bf7-bfdb-a90c082bc2fb"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="275" y="62" width="1" height="44" uuid="b14f13df-050d-4449-9ebb-562e6f5e1217"/>
+			</line>
+			<staticText>
+				<reportElement x="387" y="28" width="38" height="20" uuid="4f555fae-ed9c-4c95-8f87-6708665a6a22"/>
+				<textElement>
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="387" y="6" width="49" height="20" uuid="26f7a41d-432a-4acd-85b0-3f956811c705"/>
+				<textElement>
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[FACTURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="308" y="68" width="29" height="19" uuid="ff8a60a7-c596-4a11-a3d9-9117f884288f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CUIT:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="242" y="0" width="66" height="62" uuid="3b9d53e2-ef6b-4db6-9f4a-65db9945ce46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="49"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipo_factura}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="242" y="0" width="66" height="62" uuid="2c976230-a274-418f-95d3-e5cd9afa8f26"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="437" y="6" width="16" height="20" uuid="3208e9dc-7ad9-47e3-b5f6-54ac458b9596"/>
+				<textElement>
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[N°:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="6" width="69" height="20" uuid="fee8aef1-b986-4495-8b70-ccf9e3388b70"/>
+				<textFieldExpression><![CDATA[$P{codart}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>
